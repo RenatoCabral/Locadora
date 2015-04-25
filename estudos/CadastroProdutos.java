@@ -3,43 +3,27 @@ package estudos;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class Locadora {
-    private int CodigoLivro;
+public class CadastroProdutos {
+    private int Codigo;
     private String descricao;
     private double vlCompra;
     private String idioma;
     private String legenda;
     private Fornecedor fornecedor;
-    private List<TipoDeMidia> TipoDeMidia;
+    private List<TipoMidia> TipoDeMidia;
     private String observacao;
     private String status;
     
-    public Locadora(){
+    public CadastroProdutos(){
     
     }
 
-    public Locadora(int CodigoLivro, String descricao, double vlCompra, String idioma, String legenda, Fornecedor fornecedor, List<TipoDeMidia> TipoDeMidia, String observacao, String status) {
-        this.CodigoLivro = CodigoLivro;
-        this.descricao = descricao;
-        this.vlCompra = vlCompra;
-        this.idioma = idioma;
-        this.legenda = legenda;
-        this.fornecedor = fornecedor;
-        this.TipoDeMidia = TipoDeMidia;
-        this.observacao = observacao;
-        this.status = status;
-        this.fornecedor.getCidade();
-        this.fornecedor.getCnpj();
-        this.fornecedor.getEndereco();
-        this.fornecedor.getNomeFantasia();
+    public int getCodigo() {
+        return Codigo;
     }
 
-    public int getCodigoLivro() {
-        return CodigoLivro;
-    }
-
-    public void setCodigoLivro(int CodigoLivro) {
-        this.CodigoLivro = CodigoLivro;
+    public void setCodigo(int Codigo) {
+        this.Codigo = Codigo;
     }
 
     public String getDescricao() {
@@ -82,11 +66,11 @@ public class Locadora {
         this.fornecedor = fornecedor;
     }
 
-    public List<TipoDeMidia> getTipoDeMidia() {
+    public List<TipoMidia> getTipoDeMidia() {
         return TipoDeMidia;
     }
 
-    public void setTipoDeMidia(List<TipoDeMidia> TipoDeMidia) {
+    public void setTipoDeMidia(List<TipoMidia> TipoDeMidia) {
         this.TipoDeMidia = TipoDeMidia;
     }
 
@@ -108,14 +92,16 @@ public class Locadora {
    
     //METODOS
     
-    public void MostrarDados(){
-        JOptionPane.showMessageDialog(null, "Código do livro: " + getCodigoLivro());
-        JOptionPane.showMessageDialog(null, "Descrição:" + getDescricao());
-        JOptionPane.showMessageDialog(null, "Valor da Compra:" + getVlCompra());
-        JOptionPane.showMessageDialog(null, "Idioma:" + getIdioma());
-        JOptionPane.showMessageDialog(null, "Legenda:" + getLegenda());
-        JOptionPane.showMessageDialog(null, "Fornecedor:" + getFornecedor() );
-        
-        
+    public void ExibeCadastroProdutos(){
+        JOptionPane.showMessageDialog(null, "Código: " + getCodigo() + 
+                                            "\n" + "Descrição:" +getDescricao()+
+                                            "\n" + "Valor da Compra:" + getVlCompra()+
+                                            "\n" +  "Idioma:" + getIdioma()+
+                                            "\n" + "Legenda:" + getLegenda()+
+                                            "\n" + "Observacao:" + getObservacao()+
+                                            "\n" + "Status:" + getStatus());
+    }
+    
+    public void ExibeCadastroFornecedor(){
     }
 }

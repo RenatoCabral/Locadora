@@ -1,4 +1,4 @@
-package estudos;
+/*package estudos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +17,15 @@ public class Main {
         
         //TIPO DE MIDIA
         
-        TipoDeMidia DVD = new TipoDeMidia("DVD");
+        TipoMidia DVD = new TipoMidia(1, "DVD");
         
-        TipoDeMidia CD = new TipoDeMidia("CD");
+        TipoMidia CD = new TipoMidia(2,"CD");
         
-        TipoDeMidia Bluray = new TipoDeMidia("Bluray");
+        TipoMidia Bluray = new TipoMidia(3,"Bluray");
         
         //LISTA DE TIPO DE MIDIA
         
-        List<TipoDeMidia> Midia = new ArrayList<>();
+        List<TipoMidia> Midia = new ArrayList<>();
         Midia.add(CD);
         Midia.add(DVD);
         Midia.add(Bluray);
@@ -63,11 +63,14 @@ public class Main {
             Midia.get(i).getDescricaoMidia();    
         }*/
         
-        for (TipoDeMidia tipoDeMidia2 : Midia) {
-            JOptionPane.showMessageDialog(null, tipoDeMidia2.getDescricaoMidia());
+        /*for (TipoMidia tipoMidia2 : Midia) {
+            JOptionPane.showMessageDialog(null, tipoMidia2.getIdTipo() );
+            
+        }*/
+        
+        /*for (TipoMidia tipoDeMidia2 : Midia) {
+            JOptionPane.showMessageDialog(null, tipoDeMidia2.getIdTipo());
            
             
-        }
-    }
-    
-}
+        }*/
+  
