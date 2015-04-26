@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package estudos;
+package Janelas;
 
+import Janelas.Locadora;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,7 +140,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
        if(jTextFieldUsuario.getText().equals("Renato") && (jPasswordFieldSenha.getText().equals("123"))){
            JOptionPane.showMessageDialog(null, "Acesso Permitido");
-           new Locadora().setVisible(true);
+           new TelaCadastro().setVisible(true);
+           //new Locadora().setVisible(true);
            this.dispose();
        }else{
            JOptionPane.showMessageDialog(null, "Acesso Negado");
@@ -147,7 +149,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        System.exit(0);
+        int a=JOptionPane.showConfirmDialog(null,"DESEJA REALMENTE SAIR?");
+        if(a==0)
+        this.dispose();
+        else {
+        }
+        
+        //System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     /**

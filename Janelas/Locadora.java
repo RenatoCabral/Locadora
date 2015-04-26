@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-package estudos;
+package Janelas;
 
+import Janelas.TelaFornecedor;
+import estudos.CadastroProdutos;
 import javax.swing.JOptionPane;
 
 /**
@@ -147,12 +149,12 @@ public class Locadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutosActionPerformed
-        Produtos tp = new Produtos();
+        TelaProdutos tp = new TelaProdutos();
         tp.setVisible(true);
     }//GEN-LAST:event_jButtonCadastrarProdutosActionPerformed
 
     private void jButtonCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarFornecedorActionPerformed
-       JFFornecedor tf = new JFFornecedor();
+       TelaFornecedor tf = new TelaFornecedor();
        tf.setVisible(true);
     }//GEN-LAST:event_jButtonCadastrarFornecedorActionPerformed
 
