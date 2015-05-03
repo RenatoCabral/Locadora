@@ -7,13 +7,15 @@ public class Fornecedor {
     private String endereco;
     private String cidade;
     private String telefone;
+    private String email;
 
-    public Fornecedor(String nomeFantasia, String cnpj, String endereco, String cidade, String telefone) {
+    public Fornecedor(String nomeFantasia, String cnpj, String endereco, String cidade, String telefone,String email) {
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.endereco = endereco;
         this.cidade = cidade;
         this.telefone = telefone;
+        this.email = email;
     }
 
     public String getNomeFantasia() {
@@ -55,6 +57,16 @@ public class Fornecedor {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
     
     
     
