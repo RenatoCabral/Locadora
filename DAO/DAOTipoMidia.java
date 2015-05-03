@@ -129,6 +129,22 @@ public class DAOTipoMidia {
     
     public void removerSelecionado(TipoMidia a){
         String query = "Delete from TipoMidia where idTipo = ?";
+        conexao = cSQL.getConnection();
+        
+        try {
+            enviaComando = conexao.prepareStatement(query);
+            enviaComando.setInt(1, a.getIdTipo());
+            enviaComando.executeUpdate();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir TipoMidia:" + e.getMessage());
+        }finally{
+            try {
+                enviaComando.close();
+                conexao.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar conexão com o banco de dados:\n ERRO:" + e.getMessage());
+            }
+        }
     }
           
 }
