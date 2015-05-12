@@ -6,9 +6,13 @@
 
 package Janelas;
 
-import estudos.ApenasLetras;
-import estudos.ApenasNumeros;
-import estudos.TipoMidia;
+import Classes.ApenasLetras;
+import Classes.ApenasNumeros;
+import Classes.TipoMidia;
+import DAO.DAOTipoMidia;
+import TableModel.TableModelTipoMidia;
+import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,12 +21,14 @@ import javax.swing.JOptionPane;
  */
 public class TelaTipoDeMidia extends javax.swing.JFrame {
 
-    TipoMidia tm = new TipoMidia(01, "Fita");
+    TipoMidia tm = new TipoMidia();
+    private DAOTipoMidia dTipoMidia = new DAOTipoMidia();
+    private TableModelTipoMidia tmtm = new TableModelTipoMidia();
     public TelaTipoDeMidia() {
         initComponents();
         
         //MASCARA PARA OS CAMPOS
-        jTextFieldCodigo.setDocument(new ApenasNumeros());
+        jTextFieldiD.setDocument(new ApenasNumeros());
         jTextFieldTipoMidia.setDocument(new ApenasLetras());
     }
 
@@ -35,27 +41,47 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabelCodigo = new javax.swing.JLabel();
-        jTextFieldCodigo = new javax.swing.JTextField();
+        jLabeliD = new javax.swing.JLabel();
+        jTextFieldiD = new javax.swing.JTextField();
         jLabelTipoMidia = new javax.swing.JLabel();
         jTextFieldTipoMidia = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButtonSair = new javax.swing.JButton();
-        jButtonMostrar = new javax.swing.JButton();
+        jButtonFechar = new javax.swing.JButton();
+        jButtonPesquisar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableTabela = new javax.swing.JTable();
+        jTextFieldFiltrar = new javax.swing.JTextField();
+        jButtonFiltrar = new javax.swing.JButton();
+        jButtonNovo = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Midia"));
 
-        jLabelCodigo.setText("Código");
+        jLabeliD.setText("iD");
 
-        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldiD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCodigoActionPerformed(evt);
+                jTextFieldiDActionPerformed(evt);
             }
         });
 
@@ -67,17 +93,17 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
             }
         });
 
-        jButtonSair.setText("Sair");
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+                jButtonFecharActionPerformed(evt);
             }
         });
 
-        jButtonMostrar.setText("Mostrar");
-        jButtonMostrar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMostrarActionPerformed(evt);
+                jButtonPesquisarActionPerformed(evt);
             }
         });
 
@@ -95,6 +121,28 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
             }
         });
 
+        jTableTabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableTabela);
+
+        jButtonFiltrar.setText("Filtrar");
+
+        jButtonNovo.setText("Novo");
+        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,61 +150,79 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jButtonSair)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonMostrar)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jButtonLimpar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonSalvar)
+                            .addComponent(jButtonLimpar)
+                            .addComponent(jButtonPesquisar)
+                            .addComponent(jButtonFechar)
+                            .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 43, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelTipoMidia)
-                                    .addComponent(jLabelCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabeliD, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addComponent(jTextFieldiD, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabelTipoMidia)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jTextFieldTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonFiltrar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonLimpar, jButtonMostrar, jButtonSair, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCodigo)
-                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabeliD)
+                    .addComponent(jTextFieldiD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelTipoMidia)
                     .addComponent(jTextFieldTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSair)
-                    .addComponent(jButtonMostrar)
-                    .addComponent(jButtonSalvar)
-                    .addComponent(jButtonLimpar))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonFiltrar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLimpar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonPesquisar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonFechar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonNovo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonLimpar, jButtonMostrar, jButtonSair, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -169,38 +235,62 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(452, 268));
+        setSize(new java.awt.Dimension(688, 464));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
+    private void jTextFieldiDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldiDActionPerformed
        tm.getIdTipo();
-    }//GEN-LAST:event_jTextFieldCodigoActionPerformed
+    }//GEN-LAST:event_jTextFieldiDActionPerformed
 
     private void jTextFieldTipoMidiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTipoMidiaActionPerformed
         tm.getTipoMidia();
     }//GEN-LAST:event_jTextFieldTipoMidiaActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         //System.exit(0);
         this.dispose();
-    }//GEN-LAST:event_jButtonSairActionPerformed
+    }//GEN-LAST:event_jButtonFecharActionPerformed
 
-    private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
-        tm.setIdTipo(Integer.parseInt(jTextFieldCodigo.getText()));
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        /*tm.setIdTipo(Integer.parseInt(jTextFieldiD.getText()));
         tm.setTipoDeMidia(jTextFieldTipoMidia.getText());
         
-        JOptionPane.showMessageDialog(null, "Código:" + " " + tm.getIdTipo() + "\n" + "Tipo de Midia:" + " " + tm.getTipoMidia());
-    }//GEN-LAST:event_jButtonMostrarActionPerformed
+        JOptionPane.showMessageDialog(null, "Código:" + " " + tm.getIdTipo() + "\n" + "Tipo de Midia:" + " " + tm.getTipoMidia());*/
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        JOptionPane.showMessageDialog(null, "Cadastro salvo com sucesso.");
+        try {
+            tm = new TipoMidia();
+            tm.setIdTipo(Integer.parseInt(jTextFieldiD.getText()));
+            tm.setTipoDeMidia(jTextFieldTipoMidia.getText());
+            dTipoMidia.insert(tm);
+            preencheTabela();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+           
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         jTextFieldTipoMidia.setText(null);
+        jTextFieldiD.setText(null);
+        jTextFieldFiltrar.setText(null);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        jTextFieldiD.setText(String.valueOf(dTipoMidia.geraCodigo()));
+        jTextFieldTipoMidia.setText("");
+        jTextFieldFiltrar.setText("");
+        jTextFieldTipoMidia.requestFocus();
+                
+    }//GEN-LAST:event_jButtonNovoActionPerformed
+        
+    private void preencheTabela() throws SQLException{
+        List<TipoMidia> tipos = dTipoMidia.listarTodos();
+        tmtm = new TableModelTipoMidia(tipos);
+        jTableTabela.setModel(tmtm);
+    }
     /**
      * @param args the command line arguments
      */
@@ -237,15 +327,22 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonLimpar;
-    private javax.swing.JButton jButtonMostrar;
-    private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonNovo;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JLabel jLabelTipoMidia;
+    private javax.swing.JLabel jLabeliD;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableTabela;
+    private javax.swing.JTextField jTextFieldFiltrar;
     private javax.swing.JTextField jTextFieldTipoMidia;
+    private javax.swing.JTextField jTextFieldiD;
     // End of variables declaration//GEN-END:variables
 }

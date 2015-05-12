@@ -10,7 +10,7 @@ public class Conexao {
         try {
             
             Class.forName("org.postgresql.Driver");
-            Connection cx = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Livro", "postgres" , "123456");
+            Connection cx = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LocadoraDeLivros", "postgres" , "123456");
             return cx;
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Não foi possivel conectar"+ex);

@@ -1,7 +1,7 @@
 package DAO;
 
+import Classes.CadastroLivros;
 import conexao.Conexao;
-import Classes.TipoMidia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,16 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class DAOTipoMidia {
+
+public class DAOLivros {
+    
     private Conexao cSQL = new Conexao();
     private Connection conexao;
     public static ResultSet resultado;
     private PreparedStatement enviaComando;
-   // private DAOTipoMidia dTipoMidia = new DAOTipoMidia();
     
     
-    public void insert(TipoMidia a ){
-        String comando  = "Insert Into TipoDeMidia (id, tipoDeMidia) values (?, ?)";
+    
+    public void insert(CadastroLivros cl){
+        String comando  = "Insert Into TipoDeMidia (id, descricao, vlcompra, idioma, legenda, fornecedor) values (?, ?)";
         conexao  = cSQL.getConnection();
         
         try {
@@ -179,5 +181,5 @@ public class DAOTipoMidia {
             }
         }
     }
-          
+    
 }

@@ -1,9 +1,9 @@
-package estudos;
+package Classes;
 
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class CadastroProdutos {
+public class CadastroLivros {
     private int Codigo;
     private String descricao;
     private double vlCompra;
@@ -14,7 +14,7 @@ public class CadastroProdutos {
     private String observacao;
     private String status;
     
-    public CadastroProdutos(){
+    public CadastroLivros(){
     
     }
 

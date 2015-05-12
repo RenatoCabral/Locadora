@@ -1,4 +1,4 @@
-package estudos;
+package Classes;
 
 public class TipoMidia {
    
@@ -11,7 +11,7 @@ public class TipoMidia {
     }
 
     public TipoMidia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public int getIdTipo() {

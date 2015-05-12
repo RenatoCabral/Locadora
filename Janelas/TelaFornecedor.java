@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package Janelas;
 
-import estudos.ApenasLetras;
-//import estudos.ApenasNumeros;
-import estudos.Fornecedor;
+import Classes.ApenasLetras;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class TelaFornecedor extends javax.swing.JFrame {
 
-        Fornecedor fornecedor = new Fornecedor("Indexis", "85.093.967/0001-18", "Rua teste", "Jatai", "(64)9999-9988", "teste@gmail.com");
+        Classes.Fornecedor fornecedor = new Classes.Fornecedor(1, "Indexis", "85.093.967/0001-18", "Rua teste", "Jatai", "(64)9999-9988", "teste@gmail.com");
     
     public TelaFornecedor() {
         initComponents();
@@ -50,7 +45,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jTextFieldEndereco = new javax.swing.JTextField();
         jLabelCidade = new javax.swing.JLabel();
         jTextFieldCidade = new javax.swing.JTextField();
-        jButtonSair = new javax.swing.JButton();
+        jButtonFechar = new javax.swing.JButton();
         jButtonMostrar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonSalvar = new javax.swing.JButton();
@@ -105,10 +100,10 @@ public class TelaFornecedor extends javax.swing.JFrame {
             }
         });
 
-        jButtonSair.setText("Sair");
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+                jButtonFecharActionPerformed(evt);
             }
         });
 
@@ -179,14 +174,14 @@ public class TelaFornecedor extends javax.swing.JFrame {
                                         .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 22, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jButtonSalvar)
                         .addGap(59, 59, 59)
-                        .addComponent(jButtonSair)
+                        .addComponent(jButtonFechar)
                         .addGap(50, 50, 50)
                         .addComponent(jButtonMostrar)
                         .addGap(72, 72, 72)
@@ -197,7 +192,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonLimpar, jButtonMostrar, jButtonSair, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonFechar, jButtonLimpar, jButtonMostrar, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +215,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCidade)
                     .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelEmail)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -229,13 +224,13 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
-                    .addComponent(jButtonSair)
+                    .addComponent(jButtonFechar)
                     .addComponent(jButtonMostrar)
                     .addComponent(jButtonLimpar))
                 .addGap(23, 23, 23))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonLimpar, jButtonMostrar, jButtonSair, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonFechar, jButtonLimpar, jButtonMostrar, jButtonSalvar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,10 +273,10 @@ public class TelaFornecedor extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Cadastro salvo com sucesso.");
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
        //System.exit(0);
         this.dispose();
-    }//GEN-LAST:event_jButtonSairActionPerformed
+    }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         fornecedor.setCidade(jTextFieldCidade.getText());
@@ -316,6 +311,11 @@ public class TelaFornecedor extends javax.swing.JFrame {
      
     }//GEN-LAST:event_jTextFieldEmailActionPerformed
 
+    private void preencheTabela() throws SQLException{
+        List<Fornecedor> tipos = dFornecedor.listarTodos();
+        tftm = new TableModelFornecedor(tipos);
+        jTableTabela.setModel(tftm);
+    }
     /**
      * @param args the command line arguments
      */
@@ -352,9 +352,9 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonMostrar;
-    private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

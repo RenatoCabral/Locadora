@@ -1,7 +1,8 @@
-package estudos;
+package Classes;
 
 public class Fornecedor {
     
+    private int idFornecedor;
     private String nomeFantasia;
     private String cnpj;
     private String endereco;
@@ -9,7 +10,8 @@ public class Fornecedor {
     private String telefone;
     private String email;
 
-    public Fornecedor(String nomeFantasia, String cnpj, String endereco, String cidade, String telefone,String email) {
+    public Fornecedor(int idFornecedor, String nomeFantasia, String cnpj, String endereco, String cidade, String telefone,String email) {
+        this.idFornecedor = idFornecedor;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.endereco = endereco;
@@ -18,6 +20,18 @@ public class Fornecedor {
         this.email = email;
     }
 
+    public Fornecedor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(int idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+    
     public String getNomeFantasia() {
         return nomeFantasia;
     }

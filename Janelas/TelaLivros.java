@@ -6,22 +6,22 @@
 
 package Janelas;
 
-import estudos.ApenasLetras;
-import estudos.ApenasNumeros;
-import estudos.CadastroProdutos;
-import estudos.TipoMidia;
+import Classes.ApenasLetras;
+import Classes.ApenasNumeros;
+import Classes.CadastroLivros;
+import Classes.TipoMidia;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Renato 
  */
-public class TelaProdutos extends javax.swing.JFrame {
+public class TelaLivros extends javax.swing.JFrame {
 
-   CadastroProdutos cp = new CadastroProdutos();
+   CadastroLivros cp = new CadastroLivros();
  
    
-    public TelaProdutos() {
+    public TelaLivros() {
         initComponents();
         
         
@@ -58,8 +58,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         jLabelLegenda = new javax.swing.JLabel();
         jTextFieldLegenda = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButtonMostrar = new javax.swing.JButton();
-        jButtonSair = new javax.swing.JButton();
+        jButtonFechar = new javax.swing.JButton();
         jLabelObservacao = new javax.swing.JLabel();
         jTextFieldObservacao = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
@@ -68,6 +67,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBoxFornecedor = new javax.swing.JComboBox();
         jButtonLimpar = new javax.swing.JButton();
+        jButtonPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -118,17 +118,10 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
-        jButtonMostrar.setText("Mostrar");
-        jButtonMostrar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMostrarActionPerformed(evt);
-            }
-        });
-
-        jButtonSair.setText("Sair");
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+                jButtonFecharActionPerformed(evt);
             }
         });
 
@@ -156,6 +149,8 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
+        jButtonPesquisar.setText("Pesquisar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,60 +161,61 @@ public class TelaProdutos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelObservacao)
-                            .addComponent(jLabelCodigoLivro)
-                            .addComponent(jLabelLegenda)
-                            .addComponent(jLabelDescricao))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldDescricao)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextFieldCodLivro)
-                                            .addComponent(jTextFieldIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-                                        .addGap(37, 37, 37)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCheckBoxAtivo)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(99, 99, 99)
-                                                .addComponent(jCheckBoxInativo))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabelVlCompra)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldVlCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(6, 6, 6)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelObservacao)
+                                    .addComponent(jLabelCodigoLivro)
+                                    .addComponent(jLabelLegenda)
+                                    .addComponent(jLabelDescricao))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(41, 41, 41)
-                                        .addComponent(jLabelTipoMidia))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextFieldDescricao)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jTextFieldLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jTextFieldCodLivro)
+                                                    .addComponent(jTextFieldIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                                .addGap(37, 37, 37)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jCheckBoxAtivo)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(99, 99, 99)
+                                                        .addComponent(jCheckBoxInativo))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLabelVlCompra)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jTextFieldVlCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(6, 6, 6)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(41, 41, 41)
+                                                .addComponent(jLabelTipoMidia))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel2)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel2)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jLabelIdioma))
-                .addContainerGap(36, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jButtonSair)
-                .addGap(87, 87, 87)
-                .addComponent(jButtonMostrar)
-                .addGap(79, 79, 79)
-                .addComponent(jButtonSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonLimpar)
-                .addGap(81, 81, 81))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBoxTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabelIdioma))
+                        .addContainerGap(36, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonFechar)
+                        .addGap(95, 95, 95)
+                        .addComponent(jButtonSalvar)
+                        .addGap(118, 118, 118)
+                        .addComponent(jButtonLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonPesquisar)
+                        .addGap(50, 50, 50))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBoxAtivo, jCheckBoxInativo});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonLimpar, jButtonMostrar, jButtonSair, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonFechar, jButtonLimpar, jButtonPesquisar, jButtonSalvar});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldCodLivro, jTextFieldIdioma, jTextFieldLegenda});
 
@@ -256,18 +252,18 @@ public class TelaProdutos extends javax.swing.JFrame {
                     .addComponent(jLabelObservacao))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonFechar)
                     .addComponent(jButtonSalvar)
-                    .addComponent(jButtonMostrar)
-                    .addComponent(jButtonSair)
-                    .addComponent(jButtonLimpar))
-                .addGap(50, 50, 50))
+                    .addComponent(jButtonLimpar)
+                    .addComponent(jButtonPesquisar))
+                .addGap(60, 60, 60))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCheckBoxAtivo, jCheckBoxInativo});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonLimpar, jButtonMostrar, jButtonSair, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonFechar, jButtonLimpar, jButtonPesquisar, jButtonSalvar});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldCodLivro, jTextFieldIdioma, jTextFieldLegenda});
 
@@ -288,28 +284,14 @@ public class TelaProdutos extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(744, 381));
+        setSize(new java.awt.Dimension(744, 343));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         //System.exit(0);
         this.dispose();
-    }//GEN-LAST:event_jButtonSairActionPerformed
-
-    private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
-
-        cp.setCodigo(Integer.parseInt(jTextFieldCodLivro.getText()));
-        cp.setDescricao(jTextFieldDescricao.getText());
-        cp.setIdioma(jTextFieldIdioma.getText());
-        cp.setLegenda(jTextFieldLegenda.getText());
-        cp.setObservacao(jTextFieldObservacao.getText());
-        cp.setVlCompra(Double.parseDouble(jTextFieldVlCompra.getText()));
-        cp.setStatus(jCheckBoxAtivo.getActionCommand());
-        cp.setStatus(jCheckBoxInativo.getActionCommand());
-       
-        JOptionPane.showMessageDialog(null,  "Descrição:" + " " + cp.getDescricao() + "\n" + "Legenda:" + " " + cp.getLegenda() + "\n" + "Idioma:" + " " + cp.getIdioma() + "\n" + "Valor da Compra:"+ " " + cp.getVlCompra()+ "\n" + "Código:" + " " + cp.getCodigo() + "\n" +  "Observação:" + " " + cp.getObservacao() + "\n" + "Status:" + " " + cp.getStatus());
-    }//GEN-LAST:event_jButtonMostrarActionPerformed
+    }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jTextFieldLegendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegendaActionPerformed
         // TODO add your handling code here:
@@ -363,28 +345,28 @@ public class TelaProdutos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaProdutos().setVisible(true);
+                new TelaLivros().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonLimpar;
-    private javax.swing.JButton jButtonMostrar;
-    private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JCheckBox jCheckBoxAtivo;
     private javax.swing.JCheckBox jCheckBoxInativo;
