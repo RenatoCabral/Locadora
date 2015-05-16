@@ -1,10 +1,10 @@
 package Classes;
 
 import java.util.List;
-import javax.swing.JOptionPane;
 
-public class CadastroLivros {
-    private int Codigo;
+public class CadastroProdutos {
+    private int id;
+    //private int Codigo;
     private String descricao;
     private double vlCompra;
     private String idioma;
@@ -12,19 +12,19 @@ public class CadastroLivros {
     private Fornecedor fornecedor;
     private List<TipoMidia> TipoDeMidia;
     private String observacao;
-    private String status;
+    //private String status;
     
-    public CadastroLivros(){
+    public CadastroProdutos(){
     
     }
 
-    public int getCodigo() {
+    /*public int getCodigo() {
         return Codigo;
     }
 
     public void setCodigo(int Codigo) {
         this.Codigo = Codigo;
-    }
+    }*/
 
     public String getDescricao() {
         return descricao;
@@ -81,8 +81,17 @@ public class CadastroLivros {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+    
+    public int getId() {
+        return id;
+    }
 
-    public String getStatus() {
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+    /*public String getStatus() {
         return status;
     }
 
@@ -103,5 +112,7 @@ public class CadastroLivros {
     }
     
     public void ExibeCadastroFornecedor(){
-    }
+    }*/
+
+    
 }

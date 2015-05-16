@@ -16,10 +16,10 @@ public class DAOFornecedor {
     private Connection conexao;
     public static ResultSet resultado;
     private PreparedStatement enviacomando;
-    private DAOFornecedor dFornecedor = new DAOFornecedor();
+    //private DAOFornecedor dFornecedor = new DAOFornecedor();
     
     public void insert(Fornecedor f){
-        String comando  = "Insert into Fornecedor( idFornecedor, nomeFantasia, cnpj, endereco, cidade, telefone, email) values (?, ?, ?, ?, ?, ?, ?)";
+        String comando  = "Insert into Fornecedor( id, nomeFantasia, cnpj, endereco, cidade, telefone, email) values (?, ?, ?, ?, ?, ?, ?)";
         conexao = cSQL.getConnection();
         
         try {
@@ -40,7 +40,7 @@ public class DAOFornecedor {
     }
     
     public void atualizar(Fornecedor f){
-        String query = "update Fornecedor set nomeFantasia= ?, cnpj= ?, endereco= ?, cidade= ?, telefone= ?, email= ? where idFornecedor= ?";
+        String query = "update fornecedor set nomefantasia= ?, cnpj= ?, endereco= ?, cidade= ?, telefone= ?, email= ? where id= ?";
         conexao = cSQL.getConnection();
         
         try {
@@ -66,14 +66,14 @@ public class DAOFornecedor {
     }
     
     public void removerTudo(){
-        String query = "Delete from Fornecedor";
+        String query = "Delete from fornecedor";
         conexao = cSQL.getConnection();
         
         try {
             enviacomando = conexao.prepareStatement(query);
             enviacomando.executeUpdate();    
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir Fornecedor.\n ERRO:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir fornecedor.\n ERRO:" + e.getMessage());
         }finally{
             try {
                 enviacomando.close();
@@ -87,7 +87,7 @@ public class DAOFornecedor {
     public int geraCodigo(){
         conexao = cSQL.getConnection();
         int codigo = 0;
-        String comando = "select max(idFornecedor) as codigo from Fornecedor";
+        String comando = "select max(id) as codigo from fornecedor";
         
         try {
             enviacomando = conexao.prepareStatement(comando);
@@ -111,7 +111,7 @@ public class DAOFornecedor {
     public List<Fornecedor> localizarFornecedor(String Fornecedor){
         conexao = cSQL.getConnection();
         List<Fornecedor> tipos = new VirtualFlow.ArrayLinkedList<>();
-        String comando = "select *from Fornecedor whre nomeFantasia = ?";
+        String comando = "select *from fornecedor whre nomefantasia = ?";
         
         try {
             enviacomando = conexao.prepareStatement(comando);
@@ -120,8 +120,8 @@ public class DAOFornecedor {
             
             while(resultado.next()){
                 Fornecedor f = new Fornecedor();
-                f.setIdFornecedor(resultado.getInt("idFornecedor"));
-                f.setNomeFantasia(resultado.getString("nomeFanatasia"));
+                f.setIdFornecedor(resultado.getInt("id"));
+                f.setNomeFantasia(resultado.getString("nomefanatasia"));
                 f.setCnpj(resultado.getString("cnpj"));
                 f.setEndereco(resultado.getString("endereco"));
                 f.setCidade(resultado.getString("cidade"));
@@ -130,7 +130,7 @@ public class DAOFornecedor {
                 tipos.add(f);        
             }
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Erro ao buscar Fornecedor:" + e.getMessage());
+             JOptionPane.showMessageDialog(null, "Erro ao buscar fornecedor:" + e.getMessage());
         }finally{
             try {
                 //consulta.close();
@@ -145,7 +145,7 @@ public class DAOFornecedor {
      public List<Fornecedor> listarTodos(){
         conexao = cSQL.getConnection();
         List<Fornecedor> tipos = new ArrayList<>();
-        String comando = "select *from Fornecedor whre descricao = ?";
+        String comando = "select *from fornecedor";
         
         try {
             enviacomando = conexao.prepareStatement(comando);
@@ -154,17 +154,17 @@ public class DAOFornecedor {
             
             while(resultado.next()){ 
                 Fornecedor f = new Fornecedor();
-                f.setIdFornecedor(resultado.getInt("IdFornecedor"));
-                f.setNomeFantasia(resultado.getString("Nome Fantasia"));
-                f.setEndereco(resultado.getString("Endereco"));
+                f.setIdFornecedor(resultado.getInt("id"));
+                f.setNomeFantasia(resultado.getString("nomefantasia"));
+                f.setEndereco(resultado.getString("endereco"));
                 f.setCidade(resultado.getString("cidade"));
-                f.setCnpj(resultado.getString("Cnpj"));
-                f.setTelefone(resultado.getString("Telefone"));
-                f.setEmail(resultado.getString("Email"));
+                f.setCnpj(resultado.getString("cnpj"));
+                f.setTelefone(resultado.getString("telefone"));
+                f.setEmail(resultado.getString("email"));
                 tipos.add(f);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar Fornecedor:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar fornecedor:" + e.getMessage());
         }finally{
             try {
                 //consulta.close();
@@ -178,7 +178,7 @@ public class DAOFornecedor {
     }
     
     public void removerSelecionado(Fornecedor f){
-        String query = "Delete from Fornecedor where idFornecedor = ?";
+        String query = "Delete from fornecedor where id = ?";
         conexao = cSQL.getConnection();
         
         try {
@@ -186,7 +186,7 @@ public class DAOFornecedor {
             enviacomando.setInt(1, f.getIdFornecedor());
             enviacomando.executeQuery();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir Fornecedor:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir fornecedor:" + e.getMessage());
         }finally{
             try {
                 enviacomando.close();

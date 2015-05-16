@@ -2,11 +2,11 @@ package Classes;
 
 public class TipoMidia {
    
-    private int IdTipo;
+    private int id;
     private String TipoMidia;
 
-    public TipoMidia(int Id, String TipoMidia) {
-        this.IdTipo = IdTipo;
+    public TipoMidia(int id, String TipoMidia) {
+        this.id = id;
         this.TipoMidia = TipoMidia;
     }
 
@@ -15,11 +15,11 @@ public class TipoMidia {
     }
 
     public int getIdTipo() {
-        return IdTipo;
+        return id;
     }
 
     public void setIdTipo(int IdTipo) {
-        this.IdTipo = IdTipo;
+        this.id = IdTipo;
     }
 
     public String getTipoMidia() {

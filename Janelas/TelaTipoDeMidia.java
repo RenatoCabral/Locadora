@@ -13,6 +13,8 @@ import DAO.DAOTipoMidia;
 import TableModel.TableModelTipoMidia;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,12 +26,18 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
     TipoMidia tm = new TipoMidia();
     private DAOTipoMidia dTipoMidia = new DAOTipoMidia();
     private TableModelTipoMidia tmtm = new TableModelTipoMidia();
+    
     public TelaTipoDeMidia() {
         initComponents();
         
         //MASCARA PARA OS CAMPOS
         jTextFieldiD.setDocument(new ApenasNumeros());
         jTextFieldTipoMidia.setDocument(new ApenasLetras());
+        try {
+            preencheTabela();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaTipoDeMidia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -274,7 +282,6 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         jTextFieldTipoMidia.setText(null);
-        jTextFieldiD.setText(null);
         jTextFieldFiltrar.setText(null);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 

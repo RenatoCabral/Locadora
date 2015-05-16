@@ -6,19 +6,19 @@
 
 package Janelas;
 
-import Classes.CadastroLivros;
+import Classes.CadastroProdutos;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Renato
  */
-public class TelaCadastro extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
     
-    CadastroLivros cp = new CadastroLivros( );
+    CadastroProdutos cp = new CadastroProdutos( );
 
     
-    public TelaCadastro() {
+    public TelaPrincipal() {
         initComponents();
     }
 
@@ -35,11 +35,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuProdutos = new javax.swing.JMenu();
         jMenuItemCadProdutos = new javax.swing.JMenuItem();
-        jMenuItemSair = new javax.swing.JMenuItem();
         jMenuFornecedor = new javax.swing.JMenu();
         jMenuItemCadFornecedor = new javax.swing.JMenuItem();
         jMenuFornecedor1 = new javax.swing.JMenu();
         jMenuItemCadFornecedor1 = new javax.swing.JMenuItem();
+        jMenuFornecedor2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -67,14 +67,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
         jMenuProdutos.add(jMenuItemCadProdutos);
 
-        jMenuItemSair.setText("Sair");
-        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSairActionPerformed(evt);
-            }
-        });
-        jMenuProdutos.add(jMenuItemSair);
-
         jMenuBar1.add(jMenuProdutos);
 
         jMenuFornecedor.setText("Fornecedor");
@@ -101,6 +93,14 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuFornecedor1);
 
+        jMenuFornecedor2.setText("Sair");
+        jMenuFornecedor2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuFornecedor2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenuFornecedor2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,7 +125,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemCadProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadProdutosActionPerformed
-        TelaLivros tp = new TelaLivros();
+        TelaCadProdutos tp = new TelaCadProdutos();
         tp.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadProdutosActionPerformed
 
@@ -134,18 +134,18 @@ public class TelaCadastro extends javax.swing.JFrame {
          tf.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadFornecedorActionPerformed
 
-    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        int a=JOptionPane.showConfirmDialog(null,"DESEJA REALMENTE SAIR?");
-        if(a==0)
-        this.dispose();
-        else {
-        }
-    }//GEN-LAST:event_jMenuItemSairActionPerformed
-
     private void jMenuItemCadFornecedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadFornecedor1ActionPerformed
         TelaTipoDeMidia tm = new TelaTipoDeMidia();
         tm.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadFornecedor1ActionPerformed
+
+    private void jMenuFornecedor2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuFornecedor2MouseClicked
+       int a=JOptionPane.showConfirmDialog(null,"DESEJA REALMENTE SAIR?");
+        if(a==0)
+        this.dispose();
+        else {
+        }
+    }//GEN-LAST:event_jMenuFornecedor2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -164,20 +164,20 @@ public class TelaCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastro().setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
     }
@@ -186,10 +186,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFornecedor;
     private javax.swing.JMenu jMenuFornecedor1;
+    private javax.swing.JMenu jMenuFornecedor2;
     private javax.swing.JMenuItem jMenuItemCadFornecedor;
     private javax.swing.JMenuItem jMenuItemCadFornecedor1;
     private javax.swing.JMenuItem jMenuItemCadProdutos;
-    private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuProdutos;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

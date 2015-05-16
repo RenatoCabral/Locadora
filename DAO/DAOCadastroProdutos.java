@@ -1,16 +1,17 @@
 package DAO;
 
-import Classes.CadastroLivros;
+import Classes.CadastroProdutos;
 import conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 
-public class DAOLivros {
+public class DAOCadastroProdutos {
     
     private Conexao cSQL = new Conexao();
     private Connection conexao;
@@ -19,14 +20,18 @@ public class DAOLivros {
     
     
     
-    public void insert(CadastroLivros cl){
-        String comando  = "Insert Into TipoDeMidia (id, descricao, vlcompra, idioma, legenda, fornecedor) values (?, ?)";
+    public void insert(CadastroProdutos cp){
+        String comando  = "Insert Into TipoDeMidia (id, descricao, vlcompra, idioma, legenda, fornecedor, obsevacao) values (?, ?, ?, ?, ?, ?, ?)";
         conexao  = cSQL.getConnection();
         
         try {
             enviaComando = conexao.prepareStatement(comando);
-            enviaComando.setInt(1, a.getIdTipo());
-            enviaComando.setString(2, a.getTipoMidia());
+            enviaComando.setInt(1, cp.getId());
+            enviaComando.setString(2, cp.getDescricao());
+            enviaComando.setString(3, cp.getIdioma());
+            enviaComando.setString(4, cp.getLegenda());
+            enviaComando.setString(5, cp.getObservacao());
+            enviaComando.setDouble(7, cp.getVlCompra());
             enviaComando.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro efetuado");
             
@@ -36,42 +41,45 @@ public class DAOLivros {
         }
     }
     
-    public void atualizar(TipoMidia a ){
-        String query = "update TipoMidia set tipoMidia = ? where idTipo = ?";
+    public void atualizar(CadastroProdutos cp ){
+        String query = "update produtos set decricao = ?, valor_compra= ?, idioma= ?, legenda= ?, observacao= ? where idTipo = ?";
         conexao = cSQL.getConnection();
         
         try {
             enviaComando = conexao.prepareStatement(query);
-            enviaComando.setInt(2, a.getIdTipo());
-            enviaComando.setString(1, a.getTipoMidia());
+            enviaComando.setInt(5, cp.getId());
+            enviaComando.setString(1, cp.getDescricao());
+            enviaComando.setString(2, cp.getIdioma());
+            enviaComando.setString(3, cp.getLegenda());
+            enviaComando.setString(4, cp.getObservacao());
             enviaComando.executeUpdate();
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao alterar TipoMidia:" + e.getMessage());
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar produtos:" + ex.getMessage());
         }finally{  
             try{
             enviaComando.close();
             conexao.close();
-            }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao fechar conexão com o banco de dados \n ERRO:" + e.getMessage());
+            }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao fechar conexão com o banco de dados \n ERRO:" + ex.getMessage());
             }
         }
     }
     
     public void removerTudo(){ 
-        String query = "Delete from TipoMidia";
+        String query = "Delete from produtos";
         conexao = cSQL.getConnection();
         
         try {
             enviaComando = conexao.prepareStatement(query);
             enviaComando.executeUpdate();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir TipoMdia:" + e.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir produtos:" + ex.getMessage());
         }finally{
             try {
                 enviaComando.close();
                 conexao.close();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao fehcar conexão:\n ERRO:" + e.getMessage());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao fehcar conexão:\n ERRO:" + ex.getMessage());
             }
         
         }
@@ -80,7 +88,7 @@ public class DAOLivros {
     public int geraCodigo(){
         conexao = cSQL.getConnection();
         int codigo = 0;
-        String comando = "select max(idTipo) as codigo from TipoMidia";
+        String comando = "select max(id) as codigo from produtos";
         
         try {
             enviaComando = conexao.prepareStatement(comando);
@@ -88,34 +96,34 @@ public class DAOLivros {
             while(resultado.next()){
                 codigo = resultado.getInt("codigo");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar código:" + e.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar código:" + ex.getMessage());
         }finally{
             try {
                 enviaComando.close();
                 resultado.close();
-            } catch (Throwable e) {
-                JOptionPane.showMessageDialog(null, "Erro ao fechar conexão com o banco de dados:\n ERRO:" + e.getMessage());
+            } catch (Throwable ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar conexão com o banco de dados:\n ERRO:" + ex.getMessage());
                 
             }
         }
         return codigo + 1;
     }
     
-    public List<TipoMidia> localizarTipo(String TipoMidia){
+    public List<CadastroProdutos> localizarTipo(String CadastroProdutos){
         conexao = cSQL.getConnection();
-        List<TipoMidia> tipos = new ArrayList<>();
-        String comando = "select *from TipoMidia whre tipoMidia = ?";
+        List<CadastroProdutos> tipos = new ArrayList<>();
+        String comando = "select *from produtos whre descricao = ?";
         
         try {
             enviaComando = conexao.prepareStatement(comando);
-            enviaComando.setString(1, TipoMidia);
+            enviaComando.setString(1, CadastroProdutos);
             resultado = enviaComando.executeQuery() ;
             
             while(resultado.next()){ 
-                TipoMidia a = new TipoMidia();
-                a.setIdTipo(resultado.getInt("IdTipo"));
-                a.setTipoDeMidia(resultado.getString("TipoMidia"));
+                CadastroProdutos cp = new CadastroProdutos();
+                cp.setId(resultado.getInt("id"));
+                cp.setTipoDeMidia(resultado.getString("TipoMidia"));
                 tipos.add(a);
             }
         } catch (Exception e) {

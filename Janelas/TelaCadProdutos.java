@@ -8,20 +8,20 @@ package Janelas;
 
 import Classes.ApenasLetras;
 import Classes.ApenasNumeros;
-import Classes.CadastroLivros;
-import Classes.TipoMidia;
+import Classes.CadastroProdutos;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Renato 
  */
-public class TelaLivros extends javax.swing.JFrame {
+public class TelaCadProdutos extends javax.swing.JFrame {
 
-   CadastroLivros cp = new CadastroLivros();
+   CadastroProdutos cp = new CadastroProdutos();
+   private DAOCa
  
    
-    public TelaLivros() {
+    public TelaCadProdutos() {
         initComponents();
         
         
@@ -51,8 +51,6 @@ public class TelaLivros extends javax.swing.JFrame {
         jTextFieldDescricao = new javax.swing.JTextField();
         jLabelVlCompra = new javax.swing.JLabel();
         jTextFieldVlCompra = new javax.swing.JTextField();
-        jCheckBoxAtivo = new javax.swing.JCheckBox();
-        jCheckBoxInativo = new javax.swing.JCheckBox();
         jLabelIdioma = new javax.swing.JLabel();
         jTextFieldIdioma = new javax.swing.JTextField();
         jLabelLegenda = new javax.swing.JLabel();
@@ -62,12 +60,14 @@ public class TelaLivros extends javax.swing.JFrame {
         jLabelObservacao = new javax.swing.JLabel();
         jTextFieldObservacao = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
-        jLabelTipoMidia = new javax.swing.JLabel();
-        jComboBoxTipoMidia = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jComboBoxFornecedor = new javax.swing.JComboBox();
         jButtonLimpar = new javax.swing.JButton();
-        jButtonPesquisar = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonNovo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButtonExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -78,12 +78,14 @@ public class TelaLivros extends javax.swing.JFrame {
 
         jLabelCodigoLivro.setText("Código Livro");
 
+        jTextFieldCodLivro.setToolTipText("Idioma");
         jTextFieldCodLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCodLivroActionPerformed(evt);
             }
         });
 
+        jTextFieldDescricao.setToolTipText("Descrição");
         jTextFieldDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDescricaoActionPerformed(evt);
@@ -92,18 +94,16 @@ public class TelaLivros extends javax.swing.JFrame {
 
         jLabelVlCompra.setText("Valor da Compra");
 
+        jTextFieldVlCompra.setToolTipText("Valor da Compra");
         jTextFieldVlCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldVlCompraActionPerformed(evt);
             }
         });
 
-        jCheckBoxAtivo.setText("Ativo");
-
-        jCheckBoxInativo.setText("Inativo");
-
         jLabelIdioma.setText("Idioma");
 
+        jTextFieldIdioma.setToolTipText("Código do Livro");
         jTextFieldIdioma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldIdiomaActionPerformed(evt);
@@ -112,6 +112,7 @@ public class TelaLivros extends javax.swing.JFrame {
 
         jLabelLegenda.setText("Legenda");
 
+        jTextFieldLegenda.setToolTipText("Legenda");
         jTextFieldLegenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldLegendaActionPerformed(evt);
@@ -119,6 +120,7 @@ public class TelaLivros extends javax.swing.JFrame {
         });
 
         jButtonFechar.setText("Fechar");
+        jButtonFechar.setToolTipText("Fechar");
         jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFecharActionPerformed(evt);
@@ -127,143 +129,154 @@ public class TelaLivros extends javax.swing.JFrame {
 
         jLabelObservacao.setText("Observação");
 
+        jTextFieldObservacao.setToolTipText("Observação");
+
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setToolTipText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
             }
         });
 
-        jLabelTipoMidia.setText("Tipo de Midia");
-
-        jComboBoxTipoMidia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "CD", "DVD", "Bluray", "Livro", "Disco(Vinil)" }));
-
         jLabel2.setText("Fornecedores");
 
-        jComboBoxFornecedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Teste", "Empresa A", "Empresa B" }));
-
         jButtonLimpar.setText("Limpar");
+        jButtonLimpar.setToolTipText("Limpar");
         jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLimparActionPerformed(evt);
             }
         });
 
-        jButtonPesquisar.setText("Pesquisar");
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.setToolTipText("Pesquisar");
+
+        jButtonNovo.setText("Novo");
+        jButtonNovo.setToolTipText("Novo");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButtonExcluir.setText("Excluir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelObservacao)
-                                    .addComponent(jLabelCodigoLivro)
-                                    .addComponent(jLabelLegenda)
-                                    .addComponent(jLabelDescricao))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextFieldDescricao)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextFieldLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextFieldCodLivro)
-                                                    .addComponent(jTextFieldIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-                                                .addGap(37, 37, 37)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jCheckBoxAtivo)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addGap(99, 99, 99)
-                                                        .addComponent(jCheckBoxInativo))
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jLabelVlCompra)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextFieldVlCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(6, 6, 6)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(41, 41, 41)
-                                                .addComponent(jLabelTipoMidia))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel2)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBoxTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jLabelIdioma))
-                        .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(jLabelObservacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonFechar)
-                        .addGap(95, 95, 95)
-                        .addComponent(jButtonSalvar)
-                        .addGap(118, 118, 118)
-                        .addComponent(jButtonLimpar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonPesquisar)
-                        .addGap(50, 50, 50))))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelCodigoLivro)
+                                .addComponent(jLabelLegenda))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jTextFieldIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(jLabelIdioma)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextFieldCodLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelVlCompra)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldVlCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(30, 30, 30)
+                                    .addComponent(jLabelDescricao)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonFechar)
+                            .addComponent(jButtonSalvar)
+                            .addComponent(jButtonLimpar)
+                            .addComponent(jButtonAlterar)
+                            .addComponent(jButtonNovo)
+                            .addComponent(jButtonExcluir))))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBoxAtivo, jCheckBoxInativo});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonFechar, jButtonLimpar, jButtonPesquisar, jButtonSalvar});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextFieldCodLivro, jTextFieldIdioma, jTextFieldLegenda});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonFechar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDescricao)
-                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTipoMidia)
-                    .addComponent(jComboBoxTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelLegenda)
-                    .addComponent(jTextFieldLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCodigoLivro)
+                    .addComponent(jTextFieldIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCodLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelIdioma)
                     .addComponent(jLabelVlCompra)
                     .addComponent(jTextFieldVlCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelIdioma)
-                    .addComponent(jTextFieldIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelLegenda)
+                            .addComponent(jTextFieldLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDescricao)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCodLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCodigoLivro)
-                    .addComponent(jCheckBoxAtivo)
-                    .addComponent(jCheckBoxInativo))
+                    .addComponent(jLabelObservacao)
+                    .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelObservacao))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonFechar)
-                    .addComponent(jButtonSalvar)
-                    .addComponent(jButtonLimpar)
-                    .addComponent(jButtonPesquisar))
-                .addGap(60, 60, 60))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonNovo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAlterar)
+                        .addGap(20, 20, 20)
+                        .addComponent(jButtonLimpar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonFechar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCheckBoxAtivo, jCheckBoxInativo});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonFechar, jButtonLimpar, jButtonPesquisar, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonFechar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldCodLivro, jTextFieldIdioma, jTextFieldLegenda});
 
@@ -284,7 +297,7 @@ public class TelaLivros extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(744, 343));
+        setSize(new java.awt.Dimension(879, 538));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -314,7 +327,10 @@ public class TelaLivros extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCodLivroActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-       JOptionPane.showMessageDialog(null, "Cadastro salvo com sucesso.");
+        try {
+            
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
@@ -345,43 +361,43 @@ public class TelaLivros extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLivros().setVisible(true);
+                new TelaCadProdutos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonLimpar;
-    private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JCheckBox jCheckBoxAtivo;
-    private javax.swing.JCheckBox jCheckBoxInativo;
     private javax.swing.JComboBox jComboBoxFornecedor;
-    private javax.swing.JComboBox jComboBoxTipoMidia;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCodigoLivro;
     private javax.swing.JLabel jLabelDescricao;
     private javax.swing.JLabel jLabelIdioma;
     private javax.swing.JLabel jLabelLegenda;
     private javax.swing.JLabel jLabelObservacao;
-    private javax.swing.JLabel jLabelTipoMidia;
     private javax.swing.JLabel jLabelVlCompra;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldCodLivro;
     private javax.swing.JTextField jTextFieldDescricao;
     private javax.swing.JTextField jTextFieldIdioma;

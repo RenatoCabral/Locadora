@@ -18,7 +18,7 @@ public class DAOTipoMidia {
     
     
     public void insert(TipoMidia a ){
-        String comando  = "Insert Into TipoDeMidia (id, tipoDeMidia) values (?, ?)";
+        String comando  = "Insert Into tipomidia (id, tipomidia) values (?, ?)";
         conexao  = cSQL.getConnection();
         
         try {
@@ -35,7 +35,7 @@ public class DAOTipoMidia {
     }
     
     public void atualizar(TipoMidia a ){
-        String query = "update TipoMidia set tipoMidia = ? where idTipo = ?";
+        String query = "update tipomidia set tipomidia = ? where id = ?";
         conexao = cSQL.getConnection();
         
         try {
@@ -44,7 +44,7 @@ public class DAOTipoMidia {
             enviaComando.setString(1, a.getTipoMidia());
             enviaComando.executeUpdate();
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao alterar TipoMidia:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao alterar tipomidia:" + e.getMessage());
         }finally{  
             try{
             enviaComando.close();
@@ -56,14 +56,14 @@ public class DAOTipoMidia {
     }
     
     public void removerTudo(){ 
-        String query = "Delete from TipoMidia";
+        String query = "Delete from tipomidia";
         conexao = cSQL.getConnection();
         
         try {
             enviaComando = conexao.prepareStatement(query);
             enviaComando.executeUpdate();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir TipoMdia:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir tipomidia:" + e.getMessage());
         }finally{
             try {
                 enviaComando.close();
@@ -78,7 +78,7 @@ public class DAOTipoMidia {
     public int geraCodigo(){
         conexao = cSQL.getConnection();
         int codigo = 0;
-        String comando = "select max(idTipo) as codigo from TipoMidia";
+        String comando = "select max(id) as codigo from tipomidia";
         
         try {
             enviaComando = conexao.prepareStatement(comando);
@@ -103,7 +103,7 @@ public class DAOTipoMidia {
     public List<TipoMidia> localizarTipo(String TipoMidia){
         conexao = cSQL.getConnection();
         List<TipoMidia> tipos = new ArrayList<>();
-        String comando = "select *from TipoMidia whre tipoMidia = ?";
+        String comando = "select *from TipoMidia whre tipomidia = ?";
         
         try {
             enviaComando = conexao.prepareStatement(comando);
@@ -112,12 +112,12 @@ public class DAOTipoMidia {
             
             while(resultado.next()){ 
                 TipoMidia a = new TipoMidia();
-                a.setIdTipo(resultado.getInt("IdTipo"));
-                a.setTipoDeMidia(resultado.getString("TipoMidia"));
+                a.setIdTipo(resultado.getInt("id"));
+                a.setTipoDeMidia(resultado.getString("tipomidia"));
                 tipos.add(a);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar TipoMidia:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar tipomidia:" + e.getMessage());
         }finally{
             try {
                 //consulta.close();
@@ -133,7 +133,7 @@ public class DAOTipoMidia {
      public List<TipoMidia> listarTodos(){
         conexao = cSQL.getConnection();
         List<TipoMidia> tipos = new ArrayList<>();
-        String comando = "select *from TipoMidia whre tipoMidia = ?";
+        String comando = "select * from tipomidia";
         
         try {
             enviaComando = conexao.prepareStatement(comando);
@@ -142,12 +142,12 @@ public class DAOTipoMidia {
             
             while(resultado.next()){ 
                 TipoMidia a = new TipoMidia();
-                a.setIdTipo(resultado.getInt("IdTipo"));
-                a.setTipoDeMidia(resultado.getString("TipoMidia"));
+                a.setIdTipo(resultado.getInt("id"));
+                a.setTipoDeMidia(resultado.getString("tipomidia"));
                 tipos.add(a);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar TipoMidia:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar tipomidia:" + e.getMessage());
         }finally{
             try {
                 //consulta.close();
@@ -161,7 +161,7 @@ public class DAOTipoMidia {
     }
     
     public void removerSelecionado(TipoMidia a){
-        String query = "Delete from TipoMidia where idTipo = ?";
+        String query = "Delete from tipomidia where idTipo = ?";
         conexao = cSQL.getConnection();
         
         try {
@@ -169,7 +169,7 @@ public class DAOTipoMidia {
             enviaComando.setInt(1, a.getIdTipo());
             enviaComando.executeUpdate();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir TipoMidia:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir tipomidia:" + e.getMessage());
         }finally{
             try {
                 enviaComando.close();

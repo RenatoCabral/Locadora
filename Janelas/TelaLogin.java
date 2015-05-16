@@ -160,7 +160,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         if(jTextFieldUsuario.getText().equals("Renato") && (jPasswordFieldSenha.getText().equals("123"))){
            JOptionPane.showMessageDialog(null, "Acesso Permitido");
-           new TelaCadastro().setVisible(true);
+           new TelaPrincipal().setVisible(true);
            //new Locadora().setVisible(true);
            this.dispose();
        }else{
