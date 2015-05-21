@@ -18,7 +18,7 @@ public class DAOTipoMidia {
     
     
     public void insert(TipoMidia a ){
-        String comando  = "Insert Into tipomidia (id, tipomidia) values (?, ?)";
+        String comando  = "Insert Into tipomidia (id_tipomidia, tipomidia) values (?, ?)";
         conexao  = cSQL.getConnection();
         
         try {
@@ -35,7 +35,7 @@ public class DAOTipoMidia {
     }
     
     public void atualizar(TipoMidia a ){
-        String query = "update tipomidia set tipomidia = ? where id = ?";
+        String query = "update tipomidia set tipomidia = ? where id_tipomidia = ?";
         conexao = cSQL.getConnection();
         
         try {
@@ -103,7 +103,7 @@ public class DAOTipoMidia {
     public List<TipoMidia> localizarTipo(String TipoMidia){
         conexao = cSQL.getConnection();
         List<TipoMidia> tipos = new ArrayList<>();
-        String comando = "select *from TipoMidia whre tipomidia = ?";
+        String comando = "select *from tipomidia whre tipomidia = ?";
         
         try {
             enviaComando = conexao.prepareStatement(comando);
@@ -112,7 +112,7 @@ public class DAOTipoMidia {
             
             while(resultado.next()){ 
                 TipoMidia a = new TipoMidia();
-                a.setIdTipo(resultado.getInt("id"));
+                a.setIdTipo(resultado.getInt("id_tipomidia"));
                 a.setTipoDeMidia(resultado.getString("tipomidia"));
                 tipos.add(a);
             }
@@ -142,7 +142,7 @@ public class DAOTipoMidia {
             
             while(resultado.next()){ 
                 TipoMidia a = new TipoMidia();
-                a.setIdTipo(resultado.getInt("id"));
+                a.setIdTipo(resultado.getInt("id_tipomidia"));
                 a.setTipoDeMidia(resultado.getString("tipomidia"));
                 tipos.add(a);
             }
@@ -161,7 +161,7 @@ public class DAOTipoMidia {
     }
     
     public void removerSelecionado(TipoMidia a){
-        String query = "Delete from tipomidia where idTipo = ?";
+        String query = "Delete from tipomidia where id_tipomidia = ?";
         conexao = cSQL.getConnection();
         
         try {

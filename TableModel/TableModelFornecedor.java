@@ -9,12 +9,12 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelFornecedor extends AbstractTableModel{
     
     private static final int Col_Id = 0;
-    private static final int Col_NomeFanstasia = 1;
+    private static final int Col_NomeFantasia = 1;
     private static final int Col_Cnpj = 2;
     private static final int Col_Telefone = 3;
-    private static final int Col_Endereco = 4;
-    private static final int Col_Cidade = 5;
-    private static final int Col_Email = 6;
+    private static final int Col_Email = 4;
+    private static final int Col_Endereco = 5;
+    private static final int Col_Cidade = 6;
     
      private List<Fornecedor> tipos;
      
@@ -34,7 +34,7 @@ public class TableModelFornecedor extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 7;
     }
 
     @Override
@@ -42,26 +42,26 @@ public class TableModelFornecedor extends AbstractTableModel{
         Fornecedor f = tipos.get(rowIndex);
         if(columnIndex == Col_Id){
             return f.getIdFornecedor();
-        }else if(columnIndex == Col_NomeFanstasia){
+        }if(columnIndex == Col_NomeFantasia){
             return f.getNomeFantasia();
-        }else if(columnIndex == Col_Endereco){
+        }if(columnIndex == Col_Endereco){
             return f.getEndereco();
-        }else if(columnIndex == Col_Cnpj){
-            return f.getEndereco();
-        }else if(columnIndex == Col_Telefone){
+        }if(columnIndex == Col_Cnpj){
+            return f.getCnpj();
+        }if(columnIndex == Col_Telefone){
             return f.getTelefone();
-        }else if(columnIndex == Col_Email){
+        }if(columnIndex == Col_Email){
             return f.getEmail();
         }
         return "";
     }
-    
+            
     @Override
     public String getColumnName(int column){
         if(column == Col_Id)
             return "Id";
-        if(column == Col_NomeFanstasia)
-            return "Nome Fanstasia";
+        if(column == Col_NomeFantasia)
+            return "Nome Fantasia";
         if(column == Col_Cidade)
             return "Cidade";
         if(column == Col_Cnpj)

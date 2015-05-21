@@ -2,30 +2,33 @@ package Classes;
 
 import java.util.List;
 
-public class CadastroProdutos {
+public class Filmes {
     private int id;
-    //private int Codigo;
+    protected int quantidade;
     private String descricao;
     private double vlCompra;
     private String idioma;
     private String legenda;
     private Fornecedor fornecedor;
-    private List<TipoMidia> TipoDeMidia;
+    private TipoMidia TipoDeMidia;
     private String observacao;
-    //private String status;
     
-    public CadastroProdutos(){
+    public Filmes(){
     
     }
 
-    /*public int getCodigo() {
-        return Codigo;
+    public Filmes(int id, int Quantidade, String descricao, double vlCompra, String idioma, String legenda, Fornecedor fornecedor, TipoMidia TipoDeMidia, String observacao) {
+        this.id = id;
+        this.quantidade = quantidade;
+        this.descricao = descricao;
+        this.vlCompra = vlCompra;
+        this.idioma = idioma;
+        this.legenda = legenda;
+        this.fornecedor = fornecedor;
+        this.TipoDeMidia = TipoDeMidia;
+        this.observacao = observacao;
     }
-
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
-    }*/
-
+    
     public String getDescricao() {
         return descricao;
     }
@@ -66,11 +69,11 @@ public class CadastroProdutos {
         this.fornecedor = fornecedor;
     }
 
-    public List<TipoMidia> getTipoDeMidia() {
+    public TipoMidia getTipoMidia() {
         return TipoDeMidia;
     }
 
-    public void setTipoDeMidia(List<TipoMidia> TipoDeMidia) {
+    public void setTipoDeMidia( TipoMidia TipoDeMidia) {
         this.TipoDeMidia = TipoDeMidia;
     }
 
@@ -89,30 +92,18 @@ public class CadastroProdutos {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
-    /*public String getStatus() {
-        return status;
+
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
-   
-    //METODOS
-    
-    public void ExibeCadastroProdutos(){
-        JOptionPane.showMessageDialog(null, "Código: " + getCodigo() + 
-                                            "\n" + "Descrição:" +getDescricao()+
-                                            "\n" + "Valor da Compra:" + getVlCompra()+
-                                            "\n" +  "Idioma:" + getIdioma()+
-                                            "\n" + "Legenda:" + getLegenda()+
-                                            "\n" + "Observacao:" + getObservacao()+
-                                            "\n" + "Status:" + getStatus());
-    }
-    
-    public void ExibeCadastroFornecedor(){
-    }*/
 
-    
+    @Override
+    public String toString() {
+        return descricao;
+    }
+       
 }

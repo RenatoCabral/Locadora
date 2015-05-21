@@ -66,6 +66,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         jTextFieldFiltrar = new javax.swing.JTextField();
         jButtonFiltrar = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,6 +141,15 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableTabela.setToolTipText("Lista de Midias");
+        jTableTabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTabelaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableTabelaMousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableTabela);
 
         jButtonFiltrar.setText("Filtrar");
@@ -150,6 +160,8 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                 jButtonNovoActionPerformed(evt);
             }
         });
+
+        jButtonExcluir.setText("Excluir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,7 +178,8 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                             .addComponent(jButtonLimpar)
                             .addComponent(jButtonPesquisar)
                             .addComponent(jButtonFechar)
-                            .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonExcluir))
                         .addGap(0, 43, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +202,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,14 +230,16 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonFechar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonNovo))
+                        .addComponent(jButtonNovo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonExcluir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -292,6 +307,14 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         jTextFieldTipoMidia.requestFocus();
                 
     }//GEN-LAST:event_jButtonNovoActionPerformed
+
+    private void jTableTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMouseClicked
+      int linha = jTableTabela.getSelectedRow();
+    }//GEN-LAST:event_jTableTabelaMouseClicked
+
+    private void jTableTabelaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMousePressed
+       
+    }//GEN-LAST:event_jTableTabelaMousePressed
         
     private void preencheTabela() throws SQLException{
         List<TipoMidia> tipos = dTipoMidia.listarTodos();
@@ -334,6 +357,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonLimpar;

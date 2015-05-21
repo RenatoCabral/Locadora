@@ -29,6 +29,13 @@ public class TipoMidia {
     public void setTipoDeMidia(String TipoMidia) {
         this.TipoMidia = TipoMidia;
     }
+
+    @Override
+    public String toString() {
+        return TipoMidia;
+    }
+    
+    
     
     
     

@@ -6,7 +6,7 @@
 
 package Janelas;
 
-import Classes.CadastroProdutos;
+import Classes.Filmes;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
     
-    CadastroProdutos cp = new CadastroProdutos( );
+    Filmes cp = new Filmes( );
 
     
     public TelaPrincipal() {
@@ -39,6 +39,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItemCadFornecedor = new javax.swing.JMenuItem();
         jMenuFornecedor1 = new javax.swing.JMenu();
         jMenuItemCadFornecedor1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemLocacao = new javax.swing.JMenuItem();
         jMenuFornecedor2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -93,6 +95,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuFornecedor1);
 
+        jMenu1.setText("Locação");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItemLocacao.setText("Locação");
+        jMenuItemLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLocacaoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemLocacao);
+
+        jMenuBar1.add(jMenu1);
+
         jMenuFornecedor2.setText("Sair");
         jMenuFornecedor2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,7 +144,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemCadProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadProdutosActionPerformed
-        TelaCadProdutos tp = new TelaCadProdutos();
+        TelaFilmes tp = new TelaFilmes();
         tp.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadProdutosActionPerformed
 
@@ -146,6 +165,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         else {
         }
     }//GEN-LAST:event_jMenuFornecedor2MouseClicked
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+       
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItemLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLocacaoActionPerformed
+        TelaLocacao tl = new TelaLocacao();
+        tl.setVisible(true);
+    }//GEN-LAST:event_jMenuItemLocacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +211,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFornecedor;
     private javax.swing.JMenu jMenuFornecedor1;
@@ -190,6 +219,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemCadFornecedor;
     private javax.swing.JMenuItem jMenuItemCadFornecedor1;
     private javax.swing.JMenuItem jMenuItemCadProdutos;
+    private javax.swing.JMenuItem jMenuItemLocacao;
     private javax.swing.JMenu jMenuProdutos;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

@@ -6,6 +6,7 @@ import conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,7 +20,7 @@ public class DAOFornecedor {
     //private DAOFornecedor dFornecedor = new DAOFornecedor();
     
     public void insert(Fornecedor f){
-        String comando  = "Insert into Fornecedor( id, nomeFantasia, cnpj, endereco, cidade, telefone, email) values (?, ?, ?, ?, ?, ?, ?)";
+        String comando  = "Insert into Fornecedor( id_fornecedor, nomeFantasia, cnpj, endereco, cidade, telefone, email) values (?, ?, ?, ?, ?, ?, ?)";
         conexao = cSQL.getConnection();
         
         try {
@@ -31,6 +32,7 @@ public class DAOFornecedor {
             enviacomando.setString(5, f.getCidade());
             enviacomando.setString(6, f.getTelefone());
             enviacomando.setString(7, f.getEmail());
+            enviacomando.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro efetuado!");
             
             enviacomando.close();
@@ -87,7 +89,7 @@ public class DAOFornecedor {
     public int geraCodigo(){
         conexao = cSQL.getConnection();
         int codigo = 0;
-        String comando = "select max(id) as codigo from fornecedor";
+        String comando = "select max(id_fornecedor) as codigo from fornecedor";
         
         try {
             enviacomando = conexao.prepareStatement(comando);
@@ -154,7 +156,7 @@ public class DAOFornecedor {
             
             while(resultado.next()){ 
                 Fornecedor f = new Fornecedor();
-                f.setIdFornecedor(resultado.getInt("id"));
+                f.setIdFornecedor(resultado.getInt("id_fornecedor"));
                 f.setNomeFantasia(resultado.getString("nomefantasia"));
                 f.setEndereco(resultado.getString("endereco"));
                 f.setCidade(resultado.getString("cidade"));
@@ -178,20 +180,20 @@ public class DAOFornecedor {
     }
     
     public void removerSelecionado(Fornecedor f){
-        String query = "Delete from fornecedor where id = ?";
+        String query = "Delete from fornecedor where id_fornecedor = ?";
         conexao = cSQL.getConnection();
         
         try {
             enviacomando= conexao.prepareStatement(query);
             enviacomando.setInt(1, f.getIdFornecedor());
             enviacomando.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir fornecedor:" + e.getMessage());
         }finally{
             try {
                 enviacomando.close();
                 conexao.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao fechar conexão com o banco de dados:\n ERRO:" + e.getMessage());
             }
         }
