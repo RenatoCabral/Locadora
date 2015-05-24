@@ -22,6 +22,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
          public static List<Fornecedor> fornecedores;
          private DAOFornecedor dFornecedor = new DAOFornecedor();
          private TableModel.TableModelFornecedor tmf = new TableModelFornecedor();
+         private DefaultTableModel dtmfornecedor = new DefaultTableModel();
         
     
     public TelaFornecedor() {
@@ -412,70 +413,34 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jTextFieldEmail.setText("");
         jTextFieldNomeFantasia.requestFocus();
     }//GEN-LAST:event_jButtonNovoActionPerformed
-
-    private void listaFornecedores() {
-        fornecedores = dFornecedor.listarTodos();
-        Fornecedor f;
-        dtm.setNumRows(0);
-        dtm.setRowCount(0);
-
-        for (int i = 0; i < fornecedores.size(); i++) {
-            f = fornecedores.get(i);
-            dtm.addRow(new String[]{String.valueOf(f.getIdFornecedor()),
-                f.getNomeFantasia(),
-                f.getEndereco(),
-                f.getCidade(),
-                f.getTelefone(),
-                f.getCnpj(),
-                f.getEmail()});
-        }
-        jTableTabela.setModel(dtm);
-    }
-    
+   
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-       
+       int resultado = JOptionPane.showConfirmDialog(this, "Confirma a exclusão do registro selecionado?","Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION );
+            if(resultado == JOptionPane.YES_OPTION){
+                try {
+                    dFornecedor.removerSelecionado(f);
+                    preencheTabela();
+                    jTextFieldId.setText("");
+                    jTextFieldNomeFantasia.setText("");
+                    jTextFieldEndereco.setText("");
+                    jTextFieldCidade.setText("");
+                    jTextFieldTelefone.setText("");
+                    jTextFieldCNPJ.setText("");
+                    jTextFieldEndereco.setText("");
+                    jTextFieldEmail.setText("");
+                    JOptionPane.showMessageDialog(null, "Fornecedor removido com sucesso!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover fornecedor:" + e.getMessage());
+                }  
+            }   
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFilrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilrarActionPerformed
-         fornecedores = dFornecedor.localizarFornecedor(jTextFieldFiltrar.getText());
-       listarFornecedoresSelecionados();
+     
     }//GEN-LAST:event_jButtonFilrarActionPerformed
 
-    private void listarFornecedoresSelecionados(){
-        dtm.setNumRows(0);
-        Fornecedor f;
-        if (fornecedores.isEmpty()){
-            listaFornecedores();
-            return;
-        }
-        for (int i = 0; i < fornecedores.size(); i++){
-            f = fornecedores.get(i);
-            dtm.addRow(new String []{String.valueOf(f.getIdFornecedor()),
-                f.getNomeFantasia(),
-                f.getEndereco(),
-                f.getCidade(), 
-                f.getTelefone(), 
-                f.getEmail(), 
-                String.valueOf(f.getCnpj())});
-        }
-        jTableTabela.setModel(dtm);
-    }
-    
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        try {
-            f.setIdFornecedor(Integer.parseInt(jTextFieldId.getText()));
-            f.setNomeFantasia(jTextFieldNomeFantasia.getText());
-            f.setEndereco(jTextFieldEndereco.getText());
-            f.setCidade(jTextFieldCidade.getText());
-            f.setTelefone(jTextFieldTelefone.getText());
-            f.setCnpj(jTextFieldCNPJ.getText());
-            f.setEmail(jTextFieldEmail.getText());
-            dFornecedor.atualizar(f);
-            JOptionPane.showMessageDialog(this,"Alteração realizada!");
-            listaFornecedores();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Erro ao alterar Fornecedor:" + e.getMessage());
-        }
+       
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jTableTabelaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMousePressed

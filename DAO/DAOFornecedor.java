@@ -186,7 +186,7 @@ public class DAOFornecedor {
         try {
             enviacomando= conexao.prepareStatement(query);
             enviacomando.setInt(1, f.getIdFornecedor());
-            enviacomando.executeQuery();
+            enviacomando.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir fornecedor:" + e.getMessage());
         }finally{
