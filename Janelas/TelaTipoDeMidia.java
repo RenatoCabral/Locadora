@@ -169,6 +169,11 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -331,6 +336,21 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_jButtonFiltrarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int resultado = JOptionPane.showConfirmDialog(this, "Confirma a exclusão do registro selecionado?","Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION );
+            if(resultado == JOptionPane.YES_OPTION){
+                try {
+                    dTipoMidia.removerSelecionado(tm);
+                    preencheTabela();
+                    jTextFieldiD.setText("");
+                    jTextFieldTipoMidia.setText("");
+                    JOptionPane.showMessageDialog(null, "Tipo de Midia removido com sucesso!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover tipo de midia:" + e.getMessage());
+                }  
+            }   
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
         
     private void preencheTabela() throws SQLException{
         List<TipoMidia> tipos = dTipoMidia.listarTodos();
