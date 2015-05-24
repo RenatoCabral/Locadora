@@ -6,7 +6,6 @@ import Classes.ApenasLetras;
 import Classes.Fornecedor;
 import DAO.DAOFornecedor;
 import TableModel.TableModelFornecedor;
-import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,15 +31,14 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jTextFieldCidade.setDocument(new ApenasLetras());
         jTextFieldEndereco.setDocument(new ApenasLetras());
         jTextFieldNomeFantasia.setDocument(new ApenasLetras()); 
+        jTableTabela.setAutoCreateRowSorter(true);
         
              try {
                  preencheTabela();
              } catch (SQLException ex) {
                  Logger.getLogger(TelaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
              }
-    }
-
-    
+    }    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -364,6 +362,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCidadeActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+      
         try {
             f = new Fornecedor();
             f.setIdFornecedor(Integer.parseInt(jTextFieldId.getText()));
@@ -433,9 +432,8 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jTableTabela.setModel(dtm);
     }
     
-   
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        if(jTableTabela.getSelectedRow()==0){
+        if(jTableTabela.getSelectedRow()== -1){
             JOptionPane.showMessageDialog(this, "Por favor, selecione um registro para remover", "ERRO", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -451,10 +449,30 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFilrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilrarActionPerformed
-        fornecedores = dFornecedor.localizarFornecedor(jTextFieldFiltrar.getText());
+         fornecedores = dFornecedor.localizarFornecedor(jTextFieldFiltrar.getText());
        listarFornecedoresSelecionados();
     }//GEN-LAST:event_jButtonFilrarActionPerformed
 
+    private void listarFornecedoresSelecionados(){
+        dtm.setNumRows(0);
+        Fornecedor f;
+        if (fornecedores.isEmpty()){
+            listaFornecedores();
+            return;
+        }
+        for (int i = 0; i < fornecedores.size(); i++){
+            f = fornecedores.get(i);
+            dtm.addRow(new String []{String.valueOf(f.getIdFornecedor()),
+                f.getNomeFantasia(),
+                f.getEndereco(),
+                f.getCidade(), 
+                f.getTelefone(), 
+                f.getEmail(), 
+                String.valueOf(f.getCnpj())});
+        }
+        jTableTabela.setModel(dtm);
+    }
+    
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         try {
             f.setIdFornecedor(Integer.parseInt(jTextFieldId.getText()));
@@ -465,11 +483,10 @@ public class TelaFornecedor extends javax.swing.JFrame {
             f.setCnpj(jTextFieldCNPJ.getText());
             f.setEmail(jTextFieldEmail.getText());
             dFornecedor.atualizar(f);
-            JOptionPane.showMessageDialog(this, "Ok");
+            JOptionPane.showMessageDialog(this,"Alteração realizada!");
             listaFornecedores();
-
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Erro ao alterar Fornecedor:" + e.getMessage());
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
@@ -490,30 +507,8 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jTextFieldTelefone.setText(String.valueOf(f.getTelefone()));
     }//GEN-LAST:event_jTableTabelaMouseClicked
     
-        private void listarFornecedoresSelecionados(){
-        dtm.setNumRows(0);
-        Fornecedor f;
-        if (fornecedores.isEmpty()){
-        
-            return;
-        }
-        for (int i = 0; i < fornecedores.size(); i++){
-            f = fornecedores.get(i);
-            dtm.addRow(new String []{String.valueOf(f.getIdFornecedor()),
-                f.getNomeFantasia(),
-                f.getEndereco(),
-                f.getCidade(), 
-                f.getTelefone(), 
-                f.getEmail(),
-                f.getCnpj()
-            });
-        }
-                    jTableTabela.setModel(dtm);
-    }
-        
-        
-    
-    
+       
+   
     private void preencheTabela() throws SQLException{
         List<Fornecedor> tipos = dFornecedor.listarTodos();
         tmf = new TableModelFornecedor(tipos);

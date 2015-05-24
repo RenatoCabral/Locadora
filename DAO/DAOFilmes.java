@@ -20,19 +20,19 @@ public class DAOFilmes {
     
     
     
-    public void insert(Filmes prod){
-        String comando  = "Insert Into filmes (id_fornecedor, descricao, valor_compra, idioma, legenda, observacao, quantidade) values (?, ?, ?, ?, ?, ?, ?)";
+    public void insert(Filmes f){
+        String comando  = "Insert Into filmes (id_filmes, descricao, valor_compra, idioma, legenda, observacao, quantidade) values (?, ?, ?, ?, ?, ?, ?)";
         conexao  = cSQL.getConnection();
         
         try {
             enviaComando = conexao.prepareStatement(comando);
-            enviaComando.setInt(1, prod.getId());
-            enviaComando.setString(2, prod.getDescricao());
-            enviaComando.setDouble(3, prod.getVlCompra());
-            enviaComando.setString(4, prod.getIdioma());
-            enviaComando.setString(5, prod.getLegenda());
-            enviaComando.setString(6, prod.getObservacao());
-            enviaComando.setInt(7, prod.getQuantidade());
+            enviaComando.setInt(1, f.getId());
+            enviaComando.setString(2, f.getDescricao());
+            enviaComando.setDouble(3, f.getVlCompra());
+            enviaComando.setString(4, f.getIdioma());
+            enviaComando.setString(5, f.getLegenda());
+            enviaComando.setString(6, f.getObservacao());
+            enviaComando.setInt(7, f.getQuantidade());
             enviaComando.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro efetuado");
             
@@ -42,19 +42,19 @@ public class DAOFilmes {
         }
     }
     
-    public void atualizar(Filmes prod ){
-        String query = "update filmes set decricao = ?, valor_compra= ?, idioma= ?, legenda= ?, observacao= ? where id = ?";
+    public void atualizar(Filmes f ){
+        String query = "update filmes set decricao = ?, valor_compra= ?, idioma= ?, legenda= ?, observacao= ? where id_filmes= ?";
         conexao = cSQL.getConnection();
         
         try {
             enviaComando = conexao.prepareStatement(query);
-            enviaComando.setInt(7, prod.getId());
-            enviaComando.setString(1, prod.getDescricao());
-            enviaComando.setString(2, prod.getIdioma());
-            enviaComando.setString(3, prod.getLegenda());
-            enviaComando.setString(4, prod.getObservacao());
-            enviaComando.setDouble(5, prod.getVlCompra());
-            enviaComando.setInt(6, prod.getQuantidade());
+            enviaComando.setInt(7, f.getId());
+            enviaComando.setString(1, f.getDescricao());
+            enviaComando.setString(2, f.getIdioma());
+            enviaComando.setString(3, f.getLegenda());
+            enviaComando.setString(4, f.getObservacao());
+            enviaComando.setDouble(5, f.getVlCompra());
+            enviaComando.setInt(6, f.getQuantidade());
             enviaComando.executeUpdate();
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar filmes:" + ex.getMessage());
@@ -64,6 +64,27 @@ public class DAOFilmes {
             conexao.close();
             }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao fechar conexão com o banco de dados \n ERRO:" + ex.getMessage());
+            }
+        }
+    }
+    
+    public void atualizaEstoque(Filmes f){
+        String query = "update  filmes set quantidade = ? where id_filmes= ?";
+         conexao = cSQL.getConnection();
+         
+         try{
+            enviaComando = conexao.prepareStatement(query);
+            enviaComando.setInt(1,f.getQuantidade());
+            enviaComando.setInt(2,f.getId());
+            enviaComando.executeUpdate();
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null,"Erro ao excluir filme"+ e.getMessage());
+        }finally{
+            try{
+                enviaComando.close();
+                conexao.close();
+            } catch (SQLException e){
+                JOptionPane.showMessageDialog(null,"Erro ao fechar a comexão com o banco de dados"+ e.getMessage());
             }
         }
     }
@@ -91,7 +112,7 @@ public class DAOFilmes {
     public int geraCodigo(){
         conexao = cSQL.getConnection();
         int codigo = 0;
-        String comando = "select max(id_produtos) as codigo from filmes";
+        String comando = "select max(id_filmes) as codigo from filmes";
         
         try {
             enviaComando = conexao.prepareStatement(comando);
@@ -125,7 +146,7 @@ public class DAOFilmes {
             
             while(resultado.next()){ 
                 Filmes filmes = new Filmes();
-                filmes.setId(resultado.getInt("id"));
+                filmes.setId(resultado.getInt("id_filmes"));
                 filmes.setDescricao(resultado.getString("descricao"));
                 filmes.setIdioma(resultado.getString("idioma"));
                 filmes.setLegenda(resultado.getString("legenda"));
@@ -158,7 +179,7 @@ public class DAOFilmes {
             
             while(resultado.next()){ 
                 Filmes filmes = new Filmes();
-                filmes.setId(resultado.getInt("id_produtos"));
+                filmes.setId(resultado.getInt("id_filmes"));
                 filmes.setDescricao(resultado.getString("descricao"));
                 filmes.setIdioma(resultado.getString("idioma"));
                 filmes.setLegenda(resultado.getString("legenda"));
@@ -180,7 +201,7 @@ public class DAOFilmes {
     }
     
     public void removerSelecionado(Filmes filmes){
-        String query = "Delete from filmes where id = ?";
+        String query = "Delete from filmes where id_filmes= ?";
         conexao = cSQL.getConnection();
         
         try {

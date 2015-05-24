@@ -61,7 +61,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jComboBoxTituloLivro" min="-2" pref="243" max="-2" attributes="0"/>
+                          <Component id="jComboBoxTituloFilmes" min="-2" pref="243" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -98,7 +98,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelTituloLivro" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jComboBoxTituloLivro" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxTituloFilmes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelQuantidade" min="-2" max="-2" attributes="0"/>
@@ -121,10 +121,10 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabelTituloLivro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Titulo  do(s) Livro (s)"/>
+            <Property name="text" type="java.lang.String" value="Titulo  do(s) Filme (s)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBoxTituloLivro">
+        <Component class="javax.swing.JComboBox" name="jComboBoxTituloFilmes">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -132,7 +132,7 @@
             <Property name="toolTipText" type="java.lang.String" value="Titulo  do Livro"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxTituloLivroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxTituloFilmesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelQuantidade">

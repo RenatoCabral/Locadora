@@ -160,13 +160,13 @@ public class DAOTipoMidia {
         return tipos;
     }
     
-    public void removerSelecionado(TipoMidia a){
+    public void removerSelecionado(TipoMidia tm){
         String query = "Delete from tipomidia where id_tipomidia = ?";
         conexao = cSQL.getConnection();
         
         try {
             enviaComando = conexao.prepareStatement(query);
-            enviaComando.setInt(1, a.getIdTipo());
+            enviaComando.setInt(1, tm.getIdTipo());
             enviaComando.executeUpdate();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir tipomidia:" + e.getMessage());

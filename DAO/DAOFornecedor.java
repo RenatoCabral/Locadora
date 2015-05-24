@@ -1,7 +1,6 @@
 package DAO;
 
 import Classes.Fornecedor;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +19,7 @@ public class DAOFornecedor {
     //private DAOFornecedor dFornecedor = new DAOFornecedor();
     
     public void insert(Fornecedor f){
-        String comando  = "Insert into Fornecedor( id_fornecedor, nomeFantasia, cnpj, endereco, cidade, telefone, email) values (?, ?, ?, ?, ?, ?, ?)";
+        String comando  = "insert into fornecedor( id_fornecedor, nomefantasia, cnpj, endereco, cidade, telefone, email) values (?, ?, ?, ?, ?, ?, ?)";
         conexao = cSQL.getConnection();
         
         try {
@@ -42,21 +41,22 @@ public class DAOFornecedor {
     }
     
     public void atualizar(Fornecedor f){
-        String query = "update fornecedor set nomefantasia= ?, cnpj= ?, endereco= ?, cidade= ?, telefone= ?, email= ? where id= ?";
+        String query = "update fornecedor set nomefantasia= ?, cnpj= ?, endereco= ?, cidade= ?, telefone= ?, email= ? where id_fornecedor= ?";
         conexao = cSQL.getConnection();
         
         try {
             enviacomando = conexao.prepareStatement(query);
-            enviacomando.setInt(7, f.getIdFornecedor());
+            
             enviacomando.setString(1, f.getNomeFantasia());
             enviacomando.setString(2, f.getCnpj());
             enviacomando.setString(3, f.getEndereco());
             enviacomando.setString(4, f.getCidade());
             enviacomando.setString(5, f.getTelefone());
             enviacomando.setString(6, f.getEmail());
+            enviacomando.setInt(7, f.getIdFornecedor());
             enviacomando.executeUpdate();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao alterar Fornecedor \n Erro:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao alterar fornecedor \n Erro:" + e.getMessage());
         }finally{
             try {
                 enviacomando.close();
@@ -112,8 +112,8 @@ public class DAOFornecedor {
     
     public List<Fornecedor> localizarFornecedor(String Fornecedor){
         conexao = cSQL.getConnection();
-        List<Fornecedor> tipos = new VirtualFlow.ArrayLinkedList<>();
-        String comando = "select *from fornecedor whre nomefantasia = ?";
+        List<Fornecedor> tipos = new ArrayList<>();
+        String comando = "select *from fornecedor where nomefantasia = ?";
         
         try {
             enviacomando = conexao.prepareStatement(comando);
@@ -123,7 +123,7 @@ public class DAOFornecedor {
             while(resultado.next()){
                 Fornecedor f = new Fornecedor();
                 f.setIdFornecedor(resultado.getInt("id"));
-                f.setNomeFantasia(resultado.getString("nomefanatasia"));
+                f.setNomeFantasia(resultado.getString("nomefantasia"));
                 f.setCnpj(resultado.getString("cnpj"));
                 f.setEndereco(resultado.getString("endereco"));
                 f.setCidade(resultado.getString("cidade"));

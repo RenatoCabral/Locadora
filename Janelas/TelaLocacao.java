@@ -24,7 +24,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     
     Filmes f = new Filmes();
     private DAOFilmes dCadFilmes = new DAOFilmes();
-    private DefaultComboBoxModel dcbmcf = new DefaultComboBoxModel();
+    private DefaultComboBoxModel dcbmf = new DefaultComboBoxModel();
     private DefaultTableModel dtm = new DefaultTableModel();
     
     public TelaLocacao() {
@@ -43,7 +43,7 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabelTituloLivro = new javax.swing.JLabel();
-        jComboBoxTituloLivro = new javax.swing.JComboBox();
+        jComboBoxTituloFilmes = new javax.swing.JComboBox();
         jLabelQuantidade = new javax.swing.JLabel();
         jTextFieldQuantidade = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
@@ -57,12 +57,12 @@ public class TelaLocacao extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tela de Locação"));
         jPanel1.setToolTipText("Tela de Locação");
 
-        jLabelTituloLivro.setText("Titulo  do(s) Livro (s)");
+        jLabelTituloLivro.setText("Titulo  do(s) Filme (s)");
 
-        jComboBoxTituloLivro.setToolTipText("Titulo  do Livro");
-        jComboBoxTituloLivro.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxTituloFilmes.setToolTipText("Titulo  do Livro");
+        jComboBoxTituloFilmes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxTituloLivroActionPerformed(evt);
+                jComboBoxTituloFilmesActionPerformed(evt);
             }
         });
 
@@ -94,7 +94,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBoxTituloLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxTituloFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -124,7 +124,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTituloLivro)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBoxTituloLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxTituloFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelQuantidade)
@@ -171,27 +171,27 @@ public class TelaLocacao extends javax.swing.JFrame {
             int qtde;
             qtde = f.getQuantidade() - (Integer.parseInt(jTextFieldQuantidade.getText()));
             f.setQuantidade(qtde);
-            dCadFilmes.atualizar(f);
-            JOptionPane.showMessageDialog(this,"Voce emprestou"+jTextFieldQuantidade.getText()+"\n"+"Filmes(s)"+"ficou em estoque:"+ qtde);
+            dCadFilmes.atualizaEstoque(f);
+            JOptionPane.showMessageDialog(this,"Voce emprestou"+jTextFieldQuantidade.getText()+"\n"+"Filme(s)"+"ficou em estoque:"+ qtde);
         } else{
             int qtde;
             qtde = f.getQuantidade() + (Integer.parseInt(jTextFieldQuantidade.getText()));
             f.setQuantidade(qtde);
-            dCadFilmes.atualizar(f);
-            JOptionPane.showMessageDialog(this,"Foi devolvido"+jTextFieldQuantidade.getText()+"\n"+"Livro(s)"+"ficou em estoque:"+ qtde);
+            dCadFilmes.atualizaEstoque(f);
+            JOptionPane.showMessageDialog(this,"Foi devolvido"+jTextFieldQuantidade.getText()+"\n"+"Filme(s)"+"ficou em estoque:"+ qtde);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jComboBoxTituloLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTituloLivroActionPerformed
-        f = (Filmes) jComboBoxTituloLivro.getSelectedItem();
+    private void jComboBoxTituloFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTituloFilmesActionPerformed
+        f = (Filmes) jComboBoxTituloFilmes.getSelectedItem();
         f.getId();
         f.getQuantidade();
-    }//GEN-LAST:event_jComboBoxTituloLivroActionPerformed
+    }//GEN-LAST:event_jComboBoxTituloFilmesActionPerformed
 
     public void preencheCombo(){
-         jComboBoxTituloLivro.removeAll();
-         dcbmcf = new DefaultComboBoxModel(dCadFilmes.listarTodos().toArray());
-         jComboBoxTituloLivro.setModel(dcbmcf); 
+         jComboBoxTituloFilmes.removeAll();
+         dcbmf = new DefaultComboBoxModel(dCadFilmes.listarTodos().toArray());
+         jComboBoxTituloFilmes.setModel(dcbmf); 
      }
     /**
      * @param args the command line arguments
@@ -233,7 +233,7 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JCheckBox jCheckBoxDevolucao;
     private javax.swing.JCheckBox jCheckBoxEmprestimo;
-    private javax.swing.JComboBox jComboBoxTituloLivro;
+    private javax.swing.JComboBox jComboBoxTituloFilmes;
     private javax.swing.JLabel jLabelQuantidade;
     private javax.swing.JLabel jLabelTituloLivro;
     private javax.swing.JPanel jPanel1;

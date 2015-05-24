@@ -52,6 +52,8 @@ public class TableModelFornecedor extends AbstractTableModel{
             return f.getTelefone();
         }if(columnIndex == Col_Email){
             return f.getEmail();
+        }if(columnIndex == Col_Cidade){
+            return f.getCidade();
         }
         return "";
     }

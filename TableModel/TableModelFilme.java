@@ -39,20 +39,21 @@ public class TableModelFilme extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-       Filmes cf = new Filmes();
+       Filmes f = tipos.get(rowIndex);
        if(columnIndex == Col_Id){
-           return cf.getId();
+           return f.getId();
        }else if(columnIndex == Col_Descricao){
-           return cf.getDescricao();
+           return f.getDescricao();
        }else if(columnIndex == Col_Idioma){
-           return cf.getIdioma();
+           return f.getIdioma();
        }else if(columnIndex == Col_Legenda){
-           return cf.getLegenda();
+           return f.getLegenda();
        }else if(columnIndex == Col_Observacao){
-           return cf.getObservacao();
+           return f.getObservacao();
        }else if(columnIndex == Col_ValorCompra){
-           return cf.getVlCompra();
+           return f.getVlCompra();
        }else if(columnIndex == Col_Quantidade){
+           return f.getQuantidade();
            
        }
        return "";
@@ -79,6 +80,14 @@ public class TableModelFilme extends AbstractTableModel{
     
     public Filmes getFilmes(int linha){
         return tipos.get(linha);
+    }
+
+    public void removeRow(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void removeTableModelListener(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

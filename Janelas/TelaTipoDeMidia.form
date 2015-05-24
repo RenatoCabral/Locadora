@@ -88,7 +88,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jButtonSalvar" linkSize="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonLimpar" linkSize="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonPesquisar" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonAlterar" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonFechar" linkSize="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonNovo" linkSize="3" min="-2" pref="82" max="-2" attributes="0"/>
                               <Component id="jButtonExcluir" linkSize="3" min="-2" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonSalvar" linkSize="4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButtonPesquisar" linkSize="4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAlterar" linkSize="4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jButtonFechar" linkSize="4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -195,12 +195,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFecharActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonPesquisar">
+        <Component class="javax.swing.JButton" name="jButtonAlterar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pesquisar"/>
+            <Property name="text" type="java.lang.String" value="Alterar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAlterarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSalvar">
@@ -278,6 +278,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Filtrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFiltrarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonNovo">
           <Properties>

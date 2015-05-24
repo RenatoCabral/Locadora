@@ -3,16 +3,16 @@ package Classes;
 public class Fornecedor {
     
     private int idFornecedor;
-    private String nomeFantasia;
+    private String nomefantasia;
     private String cnpj;
     private String endereco;
     private String cidade;
     private String telefone;
     private String email;
 
-    public Fornecedor(int idFornecedor, String nomeFantasia, String cnpj, String endereco, String cidade, String telefone,String email) {
+    public Fornecedor(int idFornecedor, String nomefantasia, String cnpj, String endereco, String cidade, String telefone,String email) {
         this.idFornecedor = idFornecedor;
-        this.nomeFantasia = nomeFantasia;
+        this.nomefantasia = nomefantasia;
         this.cnpj = cnpj;
         this.endereco = endereco;
         this.cidade = cidade;
@@ -33,11 +33,11 @@ public class Fornecedor {
     }
     
     public String getNomeFantasia() {
-        return nomeFantasia;
+        return nomefantasia;
     }
 
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+    public void setNomeFantasia(String nomefantasia) {
+        this.nomefantasia = nomefantasia;
     }
 
     public String getCnpj() {
@@ -82,7 +82,7 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return nomeFantasia;
+        return nomefantasia;
     }
 
     

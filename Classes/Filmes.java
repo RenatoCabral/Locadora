@@ -1,7 +1,5 @@
 package Classes;
 
-import java.util.List;
-
 public class Filmes {
     private int id;
     protected int quantidade;
@@ -17,7 +15,7 @@ public class Filmes {
     
     }
 
-    public Filmes(int id, int Quantidade, String descricao, double vlCompra, String idioma, String legenda, Fornecedor fornecedor, TipoMidia TipoDeMidia, String observacao) {
+    public Filmes(int id, int quantidade, String descricao, double vlCompra, String idioma, String legenda, Fornecedor fornecedor, TipoMidia TipoDeMidia, String observacao) {
         this.id = id;
         this.quantidade = quantidade;
         this.descricao = descricao;

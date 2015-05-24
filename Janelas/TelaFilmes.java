@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -27,6 +28,7 @@ public class TelaFilmes extends javax.swing.JFrame {
    public DefaultComboBoxModel dcbmFilme = null;
    public DefaultComboBoxModel dcbmTipoMidia = null;
    private TableModel.TableModelFilme tmfilme = new TableModelFilme();
+   private DefaultTableModel dtmfilme = new DefaultTableModel();
  
    
     public TelaFilmes() {
@@ -41,6 +43,7 @@ public class TelaFilmes extends javax.swing.JFrame {
         jTextFieldVlCompra.setDocument(new ApenasNumeros());
         jTextFieldIdioma.setDocument(new ApenasLetras());
         jTextFieldQuantidade.setDocument(new ApenasNumeros());
+        jTableTabela.setAutoCreateRowSorter(true);
         
          preencherCombo();
         try {
@@ -165,7 +168,7 @@ public class TelaFilmes extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("Alterar");
-        jButtonAlterar.setToolTipText("Pesquisar");
+        jButtonAlterar.setToolTipText("Alterar");
 
         jButtonNovo.setText("Novo");
         jButtonNovo.setToolTipText("Novo");
@@ -199,6 +202,11 @@ public class TelaFilmes extends javax.swing.JFrame {
 
             }
         ));
+        jTableTabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableTabela);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -409,8 +417,29 @@ public class TelaFilmes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+       try {
+            JOptionPane.showMessageDialog(null, "teste:" + f.getId());
+            dFilme.removerSelecionado(f);
+           preencheTabela();
+            JOptionPane.showMessageDialog(null, "Filme removido com sucesso!");
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Erro ao remover filme:" + e.getMessage());
+        }
        
+        
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jTableTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMouseClicked
+       int linha = jTableTabela.getSelectedRow();
+       f = tmfilme.getFilmes(linha);
+       
+       jTextFieldId.setText((String.valueOf(f.getId())));
+       jTextFieldDescricao.setText(String.valueOf(f.getDescricao()));
+       jTextFieldIdioma.setText(String.valueOf(f.getIdioma()));
+       jTextFieldLegenda.setText(String.valueOf(f.getLegenda()));
+       jTextFieldObservacao.setText(String.valueOf(f.getObservacao()));
+       jTextFieldQuantidade.setText(String.valueOf(f.getQuantidade()));
+    }//GEN-LAST:event_jTableTabelaMouseClicked
 
     private void preencherCombo(){
         jComboBoxFornecedor.removeAll();

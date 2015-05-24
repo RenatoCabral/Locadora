@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 public class TelaTipoDeMidia extends javax.swing.JFrame {
 
     TipoMidia tm = new TipoMidia();
+    public static List<TipoMidia> tpmd;
     private DAOTipoMidia dTipoMidia = new DAOTipoMidia();
     private TableModelTipoMidia tmtm = new TableModelTipoMidia();
     
@@ -33,6 +34,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         //MASCARA PARA OS CAMPOS
         jTextFieldiD.setDocument(new ApenasNumeros());
         jTextFieldTipoMidia.setDocument(new ApenasLetras());
+        jTableTabela.setAutoCreateRowSorter(true);
         try {
             preencheTabela();
         } catch (SQLException ex) {
@@ -58,7 +60,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         jTextFieldTipoMidia = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonFechar = new javax.swing.JButton();
-        jButtonPesquisar = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -109,10 +111,10 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
             }
         });
 
-        jButtonPesquisar.setText("Pesquisar");
-        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisarActionPerformed(evt);
+                jButtonAlterarActionPerformed(evt);
             }
         });
 
@@ -153,6 +155,11 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTableTabela);
 
         jButtonFiltrar.setText("Filtrar");
+        jButtonFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFiltrarActionPerformed(evt);
+            }
+        });
 
         jButtonNovo.setText("Novo");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +183,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonSalvar)
                             .addComponent(jButtonLimpar)
-                            .addComponent(jButtonPesquisar)
+                            .addComponent(jButtonAlterar)
                             .addComponent(jButtonFechar)
                             .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonExcluir))
@@ -202,7 +209,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +233,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonPesquisar)
+                        .addComponent(jButtonAlterar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonFechar)
                         .addGap(18, 18, 18)
@@ -239,7 +246,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonPesquisar, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,12 +282,12 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
-    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         /*tm.setIdTipo(Integer.parseInt(jTextFieldiD.getText()));
         tm.setTipoDeMidia(jTextFieldTipoMidia.getText());
         
         JOptionPane.showMessageDialog(null, "Código:" + " " + tm.getIdTipo() + "\n" + "Tipo de Midia:" + " " + tm.getTipoMidia());*/
-    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
@@ -310,11 +317,20 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
 
     private void jTableTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMouseClicked
       int linha = jTableTabela.getSelectedRow();
+      tm = tmtm.getTipoMidia(linha);
+      
+      jTextFieldiD.setText(String.valueOf(tm.getIdTipo()));
+      jTextFieldTipoMidia.setText(String.valueOf(tm.getTipoMidia()));
     }//GEN-LAST:event_jTableTabelaMouseClicked
 
     private void jTableTabelaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMousePressed
        
     }//GEN-LAST:event_jTableTabelaMousePressed
+
+    private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
+       
+        
+    }//GEN-LAST:event_jButtonFiltrarActionPerformed
         
     private void preencheTabela() throws SQLException{
         List<TipoMidia> tipos = dTipoMidia.listarTodos();
@@ -357,12 +373,12 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonNovo;
-    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabelTipoMidia;
     private javax.swing.JLabel jLabeliD;
