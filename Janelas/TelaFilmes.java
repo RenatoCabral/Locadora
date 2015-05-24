@@ -86,6 +86,9 @@ public class TelaFilmes extends javax.swing.JFrame {
         jTextFieldQuantidade = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableTabela = new javax.swing.JTable();
+        jButtonExcluirTudo = new javax.swing.JButton();
+        jTextFieldFiltrar = new javax.swing.JTextField();
+        jButtonFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -209,6 +212,19 @@ public class TelaFilmes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableTabela);
 
+        jButtonExcluirTudo.setText("Excluir Tudo");
+        jButtonExcluirTudo.setToolTipText("Excluir Tudo");
+        jButtonExcluirTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirTudoActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFiltrar.setToolTipText("Filtrar");
+
+        jButtonFiltrar.setText("Filtrar");
+        jButtonFiltrar.setToolTipText("Filtrar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,34 +232,7 @@ public class TelaFilmes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabelTipoMidia)
-                        .addGap(27, 27, 27)
-                        .addComponent(jComboBoxTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonFechar)
-                            .addComponent(jButtonSalvar)
-                            .addComponent(jButtonLimpar)
-                            .addComponent(jButtonAlterar)
-                            .addComponent(jButtonNovo)
-                            .addComponent(jButtonExcluir)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabelObservacao)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(35, 35, 35)
-                            .addComponent(jLabelQuantidade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextFieldQuantidade))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelCodigoLivro)
@@ -267,11 +256,45 @@ public class TelaFilmes extends javax.swing.JFrame {
                                     .addGap(30, 30, 30)
                                     .addComponent(jLabelDescricao)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 26, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabelObservacao)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(35, 35, 35)
+                            .addComponent(jLabelQuantidade)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextFieldQuantidade))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabelTipoMidia)
+                                .addGap(27, 27, 27)
+                                .addComponent(jComboBoxTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonFiltrar)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonFechar)
+                            .addComponent(jButtonSalvar)
+                            .addComponent(jButtonLimpar)
+                            .addComponent(jButtonAlterar)
+                            .addComponent(jButtonNovo)
+                            .addComponent(jButtonExcluir)
+                            .addComponent(jButtonExcluirTudo))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonFechar, jButtonLimpar, jButtonNovo, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonExcluirTudo, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,13 +329,21 @@ public class TelaFilmes extends javax.swing.JFrame {
                     .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelTipoMidia)
                     .addComponent(jComboBoxTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonExcluir)
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonExcluir)
+                            .addComponent(jButtonFiltrar)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonNovo)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonAlterar)
@@ -321,12 +352,14 @@ public class TelaFilmes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvar)
                         .addGap(18, 18, 18)
+                        .addComponent(jButtonExcluirTudo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonFechar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonFechar, jButtonLimpar, jButtonNovo, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonExcluirTudo, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldId, jTextFieldIdioma, jTextFieldLegenda});
 
@@ -347,7 +380,7 @@ public class TelaFilmes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(879, 516));
+        setSize(new java.awt.Dimension(890, 550));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -450,6 +483,27 @@ public class TelaFilmes extends javax.swing.JFrame {
        jTextFieldQuantidade.setText(String.valueOf(f.getQuantidade()));
     }//GEN-LAST:event_jTableTabelaMouseClicked
 
+    private void jButtonExcluirTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirTudoActionPerformed
+      int resultado = JOptionPane.showConfirmDialog(this, "Confirma a exclusão do registro selecionado?","Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION );
+            if(resultado == JOptionPane.YES_OPTION){
+                try {
+                    dFilme.removerTudo();
+                    preencheTabela();
+                    jTextFieldId.setText("");
+                    jTextFieldDescricao.setText("");
+                    jTextFieldIdioma.setText("");
+                    jTextFieldLegenda.setText("");
+                    jTextFieldObservacao.setText("");
+                    jTextFieldVlCompra.setText("");
+                    jTextFieldQuantidade.setText("");
+                    JOptionPane.showMessageDialog(null, "Filme removido com sucesso!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover filme:" + e.getMessage());
+                }
+            
+            }   
+    }//GEN-LAST:event_jButtonExcluirTudoActionPerformed
+
     private void preencherCombo(){
         jComboBoxFornecedor.removeAll();
         jComboBoxTipoMidia.removeAll();
@@ -502,7 +556,9 @@ public class TelaFilmes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonExcluirTudo;
     private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
@@ -522,6 +578,7 @@ public class TelaFilmes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableTabela;
     private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldFiltrar;
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldIdioma;
     private javax.swing.JTextField jTextFieldLegenda;

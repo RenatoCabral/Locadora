@@ -69,6 +69,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
         jButtonFiltrar = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
+        jButtonExcluirTudo = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -175,6 +176,14 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
             }
         });
 
+        jButtonExcluirTudo.setText("Excluir Tudo");
+        jButtonExcluirTudo.setToolTipText("Excluir Tudo");
+        jButtonExcluirTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirTudoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -192,7 +201,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                             .addComponent(jButtonFechar)
                             .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonExcluir))
-                        .addGap(0, 43, Short.MAX_VALUE))
+                        .addGap(0, 32, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1)
@@ -211,10 +220,12 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                         .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonFiltrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluirTudo)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonExcluirTudo, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,10 +238,15 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                     .addComponent(jTextFieldTipoMidia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFiltrar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonFiltrar)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jButtonExcluirTudo)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -251,7 +267,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonExcluirTudo, jButtonFechar, jButtonFiltrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,6 +367,21 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
                 }  
             }   
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonExcluirTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirTudoActionPerformed
+        int resultado = JOptionPane.showConfirmDialog(this, "Confirma a exclusão do registro selecionado?","Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION );
+            if(resultado == JOptionPane.YES_OPTION){
+                try {
+                    dTipoMidia.removerTudo();
+                    preencheTabela();
+                    jTextFieldiD.setText("");
+                    jTextFieldTipoMidia.setText("");
+                    JOptionPane.showMessageDialog(null, "Tipo de Midia removido com sucesso!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover tipo de midia:" + e.getMessage());
+                }  
+            }  
+    }//GEN-LAST:event_jButtonExcluirTudoActionPerformed
         
     private void preencheTabela() throws SQLException{
         List<TipoMidia> tipos = dTipoMidia.listarTodos();
@@ -395,6 +426,7 @@ public class TelaTipoDeMidia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonExcluirTudo;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonLimpar;

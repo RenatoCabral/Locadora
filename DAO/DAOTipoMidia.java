@@ -103,7 +103,7 @@ public class DAOTipoMidia {
     public List<TipoMidia> localizarTipo(String TipoMidia){
         conexao = cSQL.getConnection();
         List<TipoMidia> tipos = new ArrayList<>();
-        String comando = "select *from tipomidia whre tipomidia = ?";
+        String comando = "select *from tipomidia where tipomidia = ?";
         
         try {
             enviaComando = conexao.prepareStatement(comando);

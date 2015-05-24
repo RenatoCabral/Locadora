@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class TelaFornecedor extends javax.swing.JFrame {
@@ -23,6 +25,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
          private DAOFornecedor dFornecedor = new DAOFornecedor();
          private TableModel.TableModelFornecedor tmf = new TableModelFornecedor();
          private DefaultTableModel dtmfornecedor = new DefaultTableModel();
+         private TableRowSorter sorter = new TableRowSorter();
         
     
     public TelaFornecedor() {
@@ -37,7 +40,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
              try {
                  preencheTabela();
              } catch (SQLException ex) {
-                 Logger.getLogger(TelaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, "ERRO:" + ex.getMessage());
              }
     }    
     @SuppressWarnings("unchecked")
@@ -84,6 +87,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jTextFieldFiltrar = new javax.swing.JTextField();
         jButtonFilrar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
+        jButtonExcluirTudo = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -211,6 +215,13 @@ public class TelaFornecedor extends javax.swing.JFrame {
             }
         });
 
+        jButtonExcluirTudo.setText("Excluir Tudo");
+        jButtonExcluirTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirTudoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -220,7 +231,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jButtonFilrar)
-                .addGap(20, 255, Short.MAX_VALUE))
+                .addGap(20, 230, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -270,11 +281,12 @@ public class TelaFornecedor extends javax.swing.JFrame {
                     .addComponent(jButtonLimpar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonAlterar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonExcluirTudo, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonFechar, jButtonFilrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonExcluirTudo, jButtonFechar, jButtonFilrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,12 +316,14 @@ public class TelaFornecedor extends javax.swing.JFrame {
                     .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFilrar))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonFechar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonLimpar)
@@ -317,13 +331,14 @@ public class TelaFornecedor extends javax.swing.JFrame {
                         .addComponent(jButtonNovo)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonExcluirTudo)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonExcluir))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(jButtonExcluir)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonFechar, jButtonFilrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAlterar, jButtonExcluir, jButtonExcluirTudo, jButtonFechar, jButtonFilrar, jButtonLimpar, jButtonNovo, jButtonSalvar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -342,7 +357,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(953, 553));
+        setSize(new java.awt.Dimension(953, 562));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -436,7 +451,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFilrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilrarActionPerformed
-     
+       
     }//GEN-LAST:event_jButtonFilrarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -459,6 +474,27 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jTextFieldNomeFantasia.setText(String.valueOf(f.getNomeFantasia()));
         jTextFieldTelefone.setText(String.valueOf(f.getTelefone()));
     }//GEN-LAST:event_jTableTabelaMouseClicked
+
+    private void jButtonExcluirTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirTudoActionPerformed
+         int resultado = JOptionPane.showConfirmDialog(this, "Confirma a exclusão do registro selecionado?","Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION );
+            if(resultado == JOptionPane.YES_OPTION){
+                try {
+                    dFornecedor.removerTudo();
+                    preencheTabela();
+                    jTextFieldId.setText("");
+                    jTextFieldNomeFantasia.setText("");
+                    jTextFieldEndereco.setText("");
+                    jTextFieldCidade.setText("");
+                    jTextFieldTelefone.setText("");
+                    jTextFieldCNPJ.setText("");
+                    jTextFieldEndereco.setText("");
+                    jTextFieldEmail.setText("");
+                    JOptionPane.showMessageDialog(null, "Fornecedor removido com sucesso!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover fornecedor:" + e.getMessage());
+                }  
+            }   
+    }//GEN-LAST:event_jButtonExcluirTudoActionPerformed
     
        
    
@@ -505,6 +541,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonExcluirTudo;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonFilrar;
     private javax.swing.JButton jButtonLimpar;
