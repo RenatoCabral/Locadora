@@ -417,16 +417,25 @@ public class TelaFilmes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-       try {
-            JOptionPane.showMessageDialog(null, "teste:" + f.getId());
-            dFilme.removerSelecionado(f);
-           preencheTabela();
-            JOptionPane.showMessageDialog(null, "Filme removido com sucesso!");
-        } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Erro ao remover filme:" + e.getMessage());
-        }
-       
-        
+
+            int resultado = JOptionPane.showConfirmDialog(this, "Confirma a exclusão do registro selecionado?","Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION );
+            if(resultado == JOptionPane.YES_OPTION){
+                try {
+                    dFilme.removerSelecionado(f);
+                    preencheTabela();
+                    jTextFieldId.setText("");
+                    jTextFieldDescricao.setText("");
+                    jTextFieldIdioma.setText("");
+                    jTextFieldLegenda.setText("");
+                    jTextFieldObservacao.setText("");
+                    jTextFieldVlCompra.setText("");
+                    jTextFieldQuantidade.setText("");
+                    JOptionPane.showMessageDialog(null, "Filme removido com sucesso!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover filme:" + e.getMessage());
+                }
+            
+            }   
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jTableTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMouseClicked

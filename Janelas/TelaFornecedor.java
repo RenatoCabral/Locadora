@@ -433,19 +433,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }
     
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        if(jTableTabela.getSelectedRow()== -1){
-            JOptionPane.showMessageDialog(this, "Por favor, selecione um registro para remover", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        int resultado = JOptionPane.showConfirmDialog(this, "Confirma a exclusão do registro selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION);
-        if(resultado == JOptionPane.YES_NO_OPTION){
-            try {
-                dFornecedor.removerSelecionado(fornecedores.get(jTableTabela.getSelectedRow()));
-                 listaFornecedores();    
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,"Erro ao excluir Fornecedor:" + e);
-            }     
-        }
+       
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFilrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilrarActionPerformed
