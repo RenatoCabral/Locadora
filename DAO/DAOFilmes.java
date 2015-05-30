@@ -34,7 +34,7 @@ public class DAOFilmes {
             enviaComando.setString(6, f.getObservacao());
             enviaComando.setInt(7, f.getQuantidade());
             enviaComando.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registro efetuado");
+            JOptionPane.showMessageDialog(null, "Registro efetuado com sucesso");
             
             enviaComando.close();
         } catch (SQLException ex) {
