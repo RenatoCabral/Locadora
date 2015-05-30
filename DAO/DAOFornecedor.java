@@ -98,7 +98,7 @@ public class DAOFornecedor {
                 codigo = resultado.getInt("codigo");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar código\n ERRO:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar código! \n ERRO:" + e.getMessage());
         }finally{
             try {
                 enviacomando.close();
